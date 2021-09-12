@@ -4,14 +4,46 @@ function page (path) {
 
 export default [
   { 
-    path: '/', 
-    name: 'index', 
-    component: page('app/home/index.vue'),
+    path: '/',
+    component: page('app/index.vue'),
     children: [
       {
-        path: 'brains', 
-        name: 'brains', 
-        component: page('app/brains/index.vue'),
+        path: '', 
+        name: 'index', 
+        component: page('app/home.vue'),
+      }
+    ],
+  },
+  {
+    path: '/admin',
+    component: page('app/admin/index.vue'),
+    children: [
+      {
+        path: '/admin', 
+        name: 'admin.index', 
+        component: page('app/admin/index.vue'),
+      },
+      {
+        path: 'subjects', 
+        name: 'subjects', 
+        // component: page('app/admin/index.vue'),
+        children: [
+          {
+            path: '/subjects',
+            name: 'admin.subjects.index', 
+            component: page('app/home/index.vue'),
+          },
+          {
+            path: 'create', 
+            name: 'admin.subjects.create', 
+            component: page('app/home/create.vue'),
+          },
+          {
+            path: 'edit', 
+            name: 'admin.subjects.edit', 
+            component: page('app/home/edit.vue'),
+          },
+        ]
       }
     ]
   },

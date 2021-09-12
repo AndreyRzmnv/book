@@ -1,17 +1,12 @@
 <template>
-  <div>
     <tiles-list
-
     ></tiles-list>
-  </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 
 export default {
-  layout: 'app',
-
   metaInfo () {
     return { title: this.$t('home') }
   },
