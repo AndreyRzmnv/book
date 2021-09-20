@@ -7,7 +7,7 @@ import Sitemap from './Sitemap.vue'
 import Search from './Search.vue'
 import Tile from './Tile.vue'
 import TilesList from './TilesList.vue'
-import AdminNavbar from './AdminNavbar.vue'
+import AdminNavbar from './Admin/Navbar.vue'
 import { HasError, AlertError, AlertSuccess } from 'vform/components/bootstrap5'
 
 // Components that are registered globaly.

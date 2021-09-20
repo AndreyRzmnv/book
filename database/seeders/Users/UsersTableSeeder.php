@@ -15,11 +15,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $admin = User::firstOrCreate([
+        $admin = User::updateOrCreate([
             'email' => 'admin@admin.com'
         ],[
             'name' => 'Andrey',
-            'password' => '$2y$10$e6AzNjBKW6NyUavKn9clVur3s0.g601OzjstAIw9kE5HH4M2OOAjK',
+            'password' => Hash::make('password'),
         ]);
         $admin->assignRole('admin');
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminMenu\AdminMenuController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\OAuthController;
@@ -21,7 +22,16 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::group(['middleware' => 'auth:api'], function () {
+    
+    Route::post('logout', [LoginController::class, 'logout']);
 
+    Route::get('user', [UserController::class, 'current']);
+
+    Route::patch('settings/profile', [ProfileController::class, 'update']);
+    Route::patch('settings/password', [PasswordController::class, 'update']);
+    Route::get('menu', [AdminMenuController::class, 'index']);
+});
 Route::group(['middleware' => 'guest:api'], function () {
     Route::post('login', [LoginController::class, 'login']);
     Route::post('register', [RegisterController::class, 'register']);
@@ -34,12 +44,5 @@ Route::group(['middleware' => 'guest:api'], function () {
 
     Route::post('oauth/{driver}', [OAuthController::class, 'redirect']);
     Route::get('oauth/{driver}/callback', [OAuthController::class, 'handleCallback'])->name('oauth.callback');
-});
-Route::group(['middleware' => 'auth:api'], function () {
-    Route::post('logout', [LoginController::class, 'logout']);
-
-    Route::get('user', [UserController::class, 'current']);
-
-    Route::patch('settings/profile', [ProfileController::class, 'update']);
-    Route::patch('settings/password', [PasswordController::class, 'update']);
+    // 
 });

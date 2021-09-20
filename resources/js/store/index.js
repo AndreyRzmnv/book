@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import routeApi from '../plugins/routeApi'
 
 Vue.use(Vuex)
 
@@ -19,5 +20,6 @@ const modules = requireContext.keys()
   }, {})
 
 export default new Vuex.Store({
+  plugins: [routeApi],
   modules
 })
