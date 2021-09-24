@@ -5,7 +5,13 @@ function page (path) {
 export default [
   { 
     path: '/',
+    meta: {
+      middleware: ['auth:user']
+    },
     component: page('app/index.vue'),
+    
+
+
     children: [
       {
         path: '', 
@@ -17,11 +23,17 @@ export default [
   {
     path: '/admin',
     component: page('app/admin/index.vue'),
-    middleware: ['admin'],
+    meta: {
+      middleware: ['auth:user']
+    },
+
     children: [
       {
         path: '/admin', 
-        name: 'admin.index', 
+        name: 'admin.index',
+        meta: {
+          middleware: ['auth:user']
+        },
         component: page('app/admin/index.vue'),
       },
       {
@@ -32,17 +44,61 @@ export default [
           {
             path: '/subjects',
             name: 'admin.subjects.index', 
-            component: page('app/home/index.vue'),
+            component: page('app/subjects/index.vue'),
           },
           {
             path: 'create', 
             name: 'admin.subjects.create', 
-            component: page('app/home/create.vue'),
+            component: page('app/subjects/create.vue'),
           },
           {
             path: 'edit', 
             name: 'admin.subjects.edit', 
-            component: page('app/home/edit.vue'),
+            component: page('app/subjects/edit.vue'),
+          },
+        ]
+      },
+      {
+        path: 'categories', 
+        name: 'categories', 
+        // component: page('app/admin/index.vue'),
+        children: [
+          {
+            path: '/categories',
+            name: 'admin.categories.index', 
+            component: page('app/categories/index.vue'),
+          },
+          {
+            path: 'create', 
+            name: 'admin.categories.create', 
+            component: page('app/categories/create.vue'),
+          },
+          {
+            path: 'edit', 
+            name: 'admin.categories.edit', 
+            component: page('app/categories/edit.vue'),
+          },
+        ]
+      },
+      {
+        path: 'subcategories', 
+        name: 'subcategories', 
+        // component: page('app/admin/index.vue'),
+        children: [
+          {
+            path: '/subcategories',
+            name: 'admin.subcategories.index', 
+            component: page('app/subcategories/index.vue'),
+          },
+          {
+            path: 'create', 
+            name: 'admin.subcategories.create', 
+            component: page('app/subcategories/create.vue'),
+          },
+          {
+            path: 'edit', 
+            name: 'admin.subcategories.edit', 
+            component: page('app/subcategories/edit.vue'),
           },
         ]
       }

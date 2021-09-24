@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import store from '~/store'
+import store from '../store'
 import Meta from 'vue-meta'
 import routes from './routes'
 import Router from 'vue-router'
@@ -13,7 +13,7 @@ const globalMiddleware = ['locale', 'check-auth']
 
 // Load middleware modules dynamically.
 const routeMiddleware = resolveMiddleware(
-  require.context('~/middleware', false, /.*\.js$/)
+  require.context('../middleware', false, /.*\.js$/)
 )
 
 const router = createRouter()
@@ -72,7 +72,7 @@ async function beforeEach (to, from, next) {
   }
 
   // Get the middleware for all the matched components.
-  const middleware = getMiddleware(components)
+  const middleware = getMiddleware(components, to)
 
   // Load async data for all the matched components.
   await asyncData(components)
@@ -199,8 +199,16 @@ function resolveComponents (components) {
  * @param  {Array} components
  * @return {Array}
  */
-function getMiddleware (components) {
-  const middleware = [...globalMiddleware]
+function getMiddleware (components, to) {
+  const middleware = to.matched.reduce((middleware, route) => {
+    if (route.meta.middleware) {
+      middleware.push(...route.meta.middleware)
+    }
+    return middleware
+  }, [...globalMiddleware])
+  
+  
+  // const middleware = [...globalMiddleware]
 
   components.filter(c => c.middleware).forEach(component => {
     if (Array.isArray(component.middleware)) {

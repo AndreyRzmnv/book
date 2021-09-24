@@ -1,18 +1,18 @@
 <?php
 return [
     [
-        'title' => 'Темы',
-        'icon' => 'mdi-auto-awesome-motion',
+        'text' => 'Темы',
+        'icon' => 'mdi-bookmark-multiple',
         'to' => ['name' => 'admin.subjects.index'],
     ],
     [
-        'title' => 'Категории',
-        'icon' => 'mdi-auto-awesome-motion',
-        'to' => 'admin.categories.index',
+        'text' => 'Категории',
+        'icon' => 'mdi-folder',
+        'to' => ['name' => 'admin.categories.index'],
     ],
     [
-        'title' => 'Подкатегории',
-        'icon' => 'mdi-auto-awesome-motion',
-        'to' => 'admin.subcategories.index',
+        'text' => 'Подкатегории',
+        'icon' => 'mdi-folder-multiple',
+        'to' => ['name' => 'admin.subcategories.index'],
     ]
 ];
