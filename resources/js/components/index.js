@@ -8,6 +8,8 @@ import Search from './Search.vue'
 import Tile from './Tile.vue'
 import TilesList from './TilesList.vue'
 import AdminNavbar from './Admin/Navbar.vue'
+import AdminHeader from './Admin/Header.vue'
+// import Navbar from './Navbar.vue'
 import { HasError, AlertError, AlertSuccess } from 'vform/components/bootstrap5'
 
 // Components that are registered globaly.
@@ -23,7 +25,9 @@ import { HasError, AlertError, AlertSuccess } from 'vform/components/bootstrap5'
   Search,
   Tile,
   TilesList,
-  AdminNavbar
+  AdminNavbar,
+  AdminHeader
+  // Navbar
 ].forEach(Component => {
   Vue.component(Component.name, Component)
 })

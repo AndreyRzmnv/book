@@ -1,18 +1,28 @@
 <template>
-    <div class="admin-panel">
-        <v-card class="admin-navbar">
-            <admin-navbar />
-        </v-card>
-        <div class="admin-content">
-            <child />
-        </div>
+    <v-app>
         
-    </div>
+        <div class="admin-panel">
+            
+            
+            <admin-navbar />
+            
+            <div class="admin-content">
+                <navbar />
+                <child />
+            </div>
+            
+        </div>
+    </v-app>
+    
 </template>
 
 <script>
+import Navbar from '~/components/Admin/Header'
 export default {
-  name: 'AdminLayout'
+    name: 'AdminLayout',
+    components: {
+        Navbar
+    }
 }
 </script>
 
@@ -22,8 +32,8 @@ export default {
         width: 100%;
         display: flex;
     }
-    .admin-navbar {
-        width: 200px;
-        height: 1000px;
+    .admin-content{
+        width: 100%;
     }
+    
 </style>

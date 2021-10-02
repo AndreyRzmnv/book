@@ -1,7 +1,14 @@
 <template>
+    <v-card class="admin-navbar" tile >
 
         <v-list dense nav>
-            <v-subheader>BOOK AdminPanel</v-subheader>
+            <router-link :to="{ name: 'admin.dashboard' }" class="text-decoration-none font-weight-light">
+            <v-subheader>
+                
+                {{ adminName }}
+            </v-subheader>
+            </router-link>
+            
             <v-list-item-group
                 color="primary"
                 v-model="selectedItem"
@@ -22,13 +29,14 @@
                 </v-list-item>
             </v-list-item-group>
         </v-list>
-
+    </v-card>
 </template>
 <script>
     import axios from 'axios'
     export default {
         name: 'AdminNavbar',
         data: () => ({
+            adminName: window.config.adminName,
             selectedItem: 0,
             getMenuData: []
         }),
@@ -53,5 +61,13 @@
     }
 </script>
 <style lang="scss">
-    
+    .admin-navbar {
+        width: 200px;
+        height: 1000px;
+    }
+    .admin-panel-name{
+        text-decoration: none;
+        outline: none;
+        // color: red;
+    }
 </style>

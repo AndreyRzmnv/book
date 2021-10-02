@@ -1,5 +1,6 @@
 @php
 $config = [
+    'adminName' => config('admin.name'),
     'appName' => config('app.name'),
     'apiUrl' => config('app.url') . '/api',
     'locale' => $locale = app()->getLocale(),

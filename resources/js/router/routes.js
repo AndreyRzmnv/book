@@ -5,56 +5,71 @@ function page (path) {
 export default [
   { 
     path: '/',
-    meta: {
-      middleware: ['auth:user']
-    },
+    name: 'dashboard',
     component: page('app/index.vue'),
-    
-
-
     children: [
       {
         path: '', 
         name: 'index', 
         component: page('app/home.vue'),
-      }
+      },
+
+
+      
     ],
   },
+  { 
+    path: '/',
+    component: page('auth/index.vue'),
+    meta: {
+      middleware: ['guest']
+    },
+    children: [
+      { path: 'login', name: 'login', component: page('auth/login.vue') },
+      { path: 'register', name: 'register', component: page('auth/register.vue') },
+      { path: 'password/reset', name: 'password.request', component: page('auth/password/email.vue') },
+      { path: 'password/reset/:token', name: 'password.reset', component: page('auth/password/reset.vue') },
+      { path: 'email/verify/:id', name: 'verification.verify', component: page('auth/verification/verify.vue') },
+      { path: 'email/resend', name: 'verification.resend', component: page('auth/verification/resend.vue') },
+    ]
+  },
+  // {
+  //   path: '/admin/subjects', 
+  //   name: 'admin.subjects.index', 
+  //   component: page('app/admin/subjects/index.vue'),
+  // },
   {
     path: '/admin',
     component: page('app/admin/index.vue'),
     meta: {
-      middleware: ['auth:user']
+      middleware: ['auth']
     },
 
     children: [
       {
         path: '/admin', 
         name: 'admin.index',
-        meta: {
-          middleware: ['auth:user']
-        },
         component: page('app/admin/index.vue'),
       },
       {
         path: 'subjects', 
-        name: 'subjects', 
-        // component: page('app/admin/index.vue'),
+        name: 'admin.subjects',
+        component: page('app/admin/subjects/index.vue'),
         children: [
           {
-            path: '/subjects',
+            path: '/admin/subjects',
             name: 'admin.subjects.index', 
-            component: page('app/subjects/index.vue'),
+            component: page('app/admin/subjects/index.vue'),
           },
           {
             path: 'create', 
             name: 'admin.subjects.create', 
-            component: page('app/subjects/create.vue'),
+            component: page('app/admin/subjects/create.vue'),
           },
           {
             path: 'edit', 
             name: 'admin.subjects.edit', 
-            component: page('app/subjects/edit.vue'),
+            component: page('app/admin/subjects/edit.vue'),
           },
         ]
       },
@@ -105,12 +120,12 @@ export default [
     ]
   },
 
-  { path: '/login', name: 'login', component: page('auth/login.vue') },
-  { path: '/register', name: 'register', component: page('auth/register.vue') },
-  { path: '/password/reset', name: 'password.request', component: page('auth/password/email.vue') },
-  { path: '/password/reset/:token', name: 'password.reset', component: page('auth/password/reset.vue') },
-  { path: '/email/verify/:id', name: 'verification.verify', component: page('auth/verification/verify.vue') },
-  { path: '/email/resend', name: 'verification.resend', component: page('auth/verification/resend.vue') },
+  // { path: '/login', name: 'login', component: page('auth/login.vue') },
+  // { path: '/register', name: 'register', component: page('auth/register.vue') },
+  // { path: '/password/reset', name: 'password.request', component: page('auth/password/email.vue') },
+  // { path: '/password/reset/:token', name: 'password.reset', component: page('auth/password/reset.vue') },
+  // { path: '/email/verify/:id', name: 'verification.verify', component: page('auth/verification/verify.vue') },
+  // { path: '/email/resend', name: 'verification.resend', component: page('auth/verification/resend.vue') },
 
   // { path: '/home', name: 'home', component: page('home.vue') },
   // {
