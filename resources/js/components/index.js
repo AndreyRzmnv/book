@@ -7,6 +7,7 @@ import Sitemap from './Sitemap.vue'
 import Search from './Search.vue'
 import Tile from './Tile.vue'
 import TilesList from './TilesList.vue'
+import DataTable from './DataTable.vue'
 import AdminNavbar from './Admin/Navbar.vue'
 import AdminHeader from './Admin/Header.vue'
 // import Navbar from './Navbar.vue'
@@ -25,6 +26,7 @@ import { HasError, AlertError, AlertSuccess } from 'vform/components/bootstrap5'
   Search,
   Tile,
   TilesList,
+  DataTable,
   AdminNavbar,
   AdminHeader
   // Navbar

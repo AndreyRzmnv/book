@@ -5,17 +5,13 @@ function page (path) {
 export default [
   { 
     path: '/',
-    name: 'dashboard',
     component: page('app/index.vue'),
     children: [
       {
         path: '', 
         name: 'index', 
         component: page('app/home.vue'),
-      },
-
-
-      
+      }
     ],
   },
   { 
@@ -33,13 +29,9 @@ export default [
       { path: 'email/resend', name: 'verification.resend', component: page('auth/verification/resend.vue') },
     ]
   },
-  // {
-  //   path: '/admin/subjects', 
-  //   name: 'admin.subjects.index', 
-  //   component: page('app/admin/subjects/index.vue'),
-  // },
   {
     path: '/admin',
+    name: 'dashboard',
     component: page('app/admin/index.vue'),
     meta: {
       middleware: ['auth']

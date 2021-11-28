@@ -210,7 +210,6 @@ function getMiddleware (components, to) {
   
   
   // const middleware = [...globalMiddleware]
-  console.log(components);
   components.filter(c => c.middleware).forEach(component => {
     
     if (Array.isArray(component.middleware)) {

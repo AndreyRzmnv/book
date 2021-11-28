@@ -8,7 +8,7 @@
             
             <div class="admin-content">
                 <navbar />
-                <child />
+                <child class="m-2" />
             </div>
             
         </div>
@@ -34,6 +34,7 @@ export default {
     }
     .admin-content{
         width: 100%;
+        background-color: rgb(240, 240, 240)
     }
     
 </style>

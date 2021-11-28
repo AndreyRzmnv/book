@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white elevation-0 admin-header">
     
       <!-- <router-link :to="{ name: user ? 'home' : 'welcome' }" class="navbar-brand font-weight-light">
         {{ adminName }}
@@ -83,10 +83,13 @@ export default {
 }
 </script>
 
-<style scoped>
-.profile-photo {
-  width: 2rem;
-  height: 2rem;
-  margin: -.375rem 0;
-}
+<style>
+  .profile-photo {
+    width: 2rem;
+    height: 2rem;
+    margin: -.375rem 0;
+  }
+  .admin-header {
+    background-color: #C6FF00;
+  }
 </style>

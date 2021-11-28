@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::patch('settings/password', [PasswordController::class, 'update']);
     Route::get('menu', [AdminMenuController::class, 'index']);
 });
-Route::group(['middleware' => 'guest:api'], function () {
+Route::group(['middleware' => 'guest:api', 'prefix' => 'admin'], function () {
     Route::post('login', [LoginController::class, 'login']);
     Route::post('register', [RegisterController::class, 'register']);
 

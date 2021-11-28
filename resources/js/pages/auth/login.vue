@@ -1,9 +1,42 @@
 <template>
   <div class="row">
-    <div class="col-lg-7 m-auto">
+    <form @submit.prevent="submit">
+      <v-card style="width: 500px; margin: 200px auto;">
+        <v-card-title>
+          Вход
+          
+        </v-card-title>
+        <v-card-text>
+          <v-text-field
+            v-model="form.email"
+            type="email"
+            label="Email"
+            :error-messages="form.errors.get('email')"
+            
+          />
+          <v-text-field
+            v-model="form.password"
+            type="password"
+            label="Пароль"
+            :error-messages="form.errors.get('password')"
+          />
+          <v-divider></v-divider>
+          <v-btn
+            color="#0D47A1"
+            dark
+            block
+            type="submit"
+          >
+            Войти
+          </v-btn>
+        </v-card-text>
+        
+      </v-card>
+    </form>
+    <!-- <div class="col-lg-7 m-auto">
       <card :title="$t('login')">
         <form @submit.prevent="login" @keydown="form.onKeydown($event)">
-          <!-- Email -->
+          
           <div class="mb-3 row">
             <label class="col-md-3 col-form-label text-md-end">{{ $t('email') }}</label>
             <div class="col-md-7">
@@ -12,7 +45,7 @@
             </div>
           </div>
 
-          <!-- Password -->
+          
           <div class="mb-3 row">
             <label class="col-md-3 col-form-label text-md-end">{{ $t('password') }}</label>
             <div class="col-md-7">
@@ -21,7 +54,7 @@
             </div>
           </div>
 
-          <!-- Remember Me -->
+          
           <div class="mb-3 row">
             <div class="col-md-3" />
             <div class="col-md-7 d-flex">
@@ -37,18 +70,18 @@
 
           <div class="mb-3 row">
             <div class="col-md-7 offset-md-3 d-flex">
-              <!-- Submit Button -->
+              
               <v-button :loading="form.busy">
                 {{ $t('login') }}
               </v-button>
 
-              <!-- GitHub Login Button -->
+              
               <login-with-github />
             </div>
           </div>
         </form>
       </card>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -77,9 +110,9 @@ export default {
   }),
 
   methods: {
-    async login () {
+    async submit () {
       // Submit the form.
-      const { data } = await this.form.post('/api/login')
+      const { data } = await this.form.post('/api/admin/login')
 
       // Save the token.
       this.$store.dispatch('auth/saveToken', {
