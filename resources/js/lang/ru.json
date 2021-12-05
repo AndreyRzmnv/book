@@ -4,7 +4,11 @@
     "settings": "Настройки",
     "logout": "Выход",
     "admin": {"dashboard": "Dashboard"},
-
+    "menu": {
+      "subjects": "Темы",
+      "categories": "Категории",
+      "subcategories": "Подкатегории"
+    },
     "resources": {
         "subjects": {
             "dataTable": {

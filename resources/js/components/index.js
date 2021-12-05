@@ -8,8 +8,8 @@ import Search from './Search.vue'
 import Tile from './Tile.vue'
 import TilesList from './TilesList.vue'
 import DataTable from './DataTable.vue'
-import AdminNavbar from './Admin/Navbar.vue'
-import AdminHeader from './Admin/Header.vue'
+// import AdminNavbar from './Admin/Navbar.vue'
+// import AdminHeader from './Admin/Header.vue'
 // import Navbar from './Navbar.vue'
 import { HasError, AlertError, AlertSuccess } from 'vform/components/bootstrap5'
 
@@ -27,8 +27,8 @@ import { HasError, AlertError, AlertSuccess } from 'vform/components/bootstrap5'
   Tile,
   TilesList,
   DataTable,
-  AdminNavbar,
-  AdminHeader
+  // AdminNavbar,
+  // AdminHeader
   // Navbar
 ].forEach(Component => {
   Vue.component(Component.name, Component)

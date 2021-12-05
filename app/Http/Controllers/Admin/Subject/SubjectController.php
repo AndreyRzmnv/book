@@ -1,21 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Subject;
 
+use App\Http\Controllers\Admin\AdminBaseController;
+use App\Http\Controllers\Controller;
 use App\Models\Subjects\Subject;
 use Illuminate\Http\Request;
 
-class SubjectController extends Controller
+class SubjectController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
+    // public function index()
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for creating a new resource.

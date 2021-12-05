@@ -21,7 +21,8 @@
 					  style="cursor: pointer"
 					  exact
 				  >
-						book
+                  qwe
+						<!-- {{ mainSettings.name_company }} -->
 					</router-link>
 			  </v-list-item-title>
 			  <!-- <v-list-item-subtitle> -->
@@ -146,12 +147,12 @@
 
 <script>
 import { mapGetters } from "vuex";
-import LocaleDropdown from "../LocaleDropdown";
+// import LocaleDropdown from "./LocaleDropdown";
 // import UserMenu from "./UserMenu";
 
 export default {
   components: {
-    LocaleDropdown,
+    // LocaleDropdown,
     // UserMenu,
   },
   data: () => ({
@@ -163,77 +164,46 @@ export default {
     items() {
       return [
         {
-            title: this.$t("menu.subjects"),
-            icon: "mdi-bookmark-multiple",
-            to: { name: "admin.subjects.index" },
-            visible: true,
+          title: this.$t("menu.sim"),
+          icon: "mdi-sim-outline",
+          submenu: [
+            {
+              title: this.$t("menu.incoming"),
+              to: { name: "incoming.index" },
+            //   visible: this.permission('read incoming'),
+            },
+            // {
+            //   title: this.$t("menu.implementation"),
+            //   to: { name: "implementation.index" },
+            //   visible: this.permission('read implementation'),
+            // },
+            // {
+            //   title: this.$t("menu.verification"),
+            //   to: { name: "verification.index" },
+            //   visible: this.permission('read verification'),
+            // },
+            // {
+            //   title: this.$t("menu.unregistered"),
+            //   to: { name: "unregistered.index" },
+            //   visible: this.permission('read unregistered'),
+            // },
+            // {
+            //   title: this.$t("menu.write_off"),
+            //   to: { name: "write_off.index" },
+            //   visible: this.permission('read write_off'),
+            // },
+            // {
+            //   title: this.$t("menu.log_files"),
+            //   to: { name: "log_files.index" },
+            //   visible: this.can('read log_files'),
+            // },
+            // {
+            //   title: this.$t("menu.log_movements"),
+            //   to: { name: "log_movements.index" },
+            //   visible: this.can('read log_movements'),
+            // }
+          ],
         },
-        {
-            title: this.$t("menu.categories"),
-            icon: "mdi-folder",
-            to: { name: "admin.categories.index" },
-            visible: true,
-        },
-        {
-            title: this.$t("menu.subcategories"),
-            icon: "mdi-folder-multiple",
-            to: { name: "admin.subcategories.index" },
-            visible: true,
-        },
-        // {
-        //     title: this.$t("menu.subjects"),
-        //     icon: "mdi-sim-outline",
-        //     visible: true,
-        //     submenu: [
-        //         {
-        //             title: this.$t("menu.subjects"),
-        //             icon: "mdi-sim-outline",
-        //             to: { name: "admin.subjects.index" },
-        //             visible: true,
-        //         },
-        //     ]
-        // }
-        // {
-        //   title: this.$t("menu.sim"),
-        //   icon: "mdi-sim-outline",
-        //   submenu: [
-        //     {
-        //       title: this.$t("menu.incoming"),
-        //       to: { name: "incoming.index" },
-        //       // visible: this.permission('read incoming'),
-        //     },
-        //     // {
-        //     //   title: this.$t("menu.implementation"),
-        //     //   to: { name: "implementation.index" },
-        //     //   visible: this.permission('read implementation'),
-        //     // },
-        //     // {
-        //     //   title: this.$t("menu.verification"),
-        //     //   to: { name: "verification.index" },
-        //     //   visible: this.permission('read verification'),
-        //     // },
-        //     // {
-        //     //   title: this.$t("menu.unregistered"),
-        //     //   to: { name: "unregistered.index" },
-        //     //   visible: this.permission('read unregistered'),
-        //     // },
-        //     // {
-        //     //   title: this.$t("menu.write_off"),
-        //     //   to: { name: "write_off.index" },
-        //     //   visible: this.permission('read write_off'),
-        //     // },
-        //     // {
-        //     //   title: this.$t("menu.log_files"),
-        //     //   to: { name: "log_files.index" },
-        //     //   visible: this.can('read log_files'),
-        //     // },
-        //     // {
-        //     //   title: this.$t("menu.log_movements"),
-        //     //   to: { name: "log_movements.index" },
-        //     //   visible: this.can('read log_movements'),
-        //     // }
-        //   ],
-        // },
         // {
         //   title: this.$t("menu.settings"),
         //   icon: "mdi-cog-outline",
@@ -370,10 +340,10 @@ export default {
     },
     availableItems() {
 
-    //   for(let i in this.items){
-    //     this.items[i].submenu = this.items[i].submenu.filter(item => {
-    //       return item.visible === undefined || item.visible})
-    //   }
+      for(let i in this.items){
+        this.items[i].submenu = this.items[i].submenu.filter(item => {
+          return item.visible === undefined || item.visible})
+      }
       let data = this.items.filter(
         (item) => item.visible === undefined || item.visible  
       );
@@ -382,8 +352,8 @@ export default {
     ...mapGetters({
     //   mainSettings: "main-settings/mainSettings",
       auth: "auth/check",
-      // can: "auth/can",
-      // permission: "auth/permission",
+    //   can: "auth/can",
+    //   permission: "auth/permission",
     }),
   },
   watch: {

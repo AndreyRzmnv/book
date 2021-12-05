@@ -1,16 +1,21 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white elevation-0 admin-header">
-    
-      <!-- <router-link :to="{ name: user ? 'home' : 'welcome' }" class="navbar-brand font-weight-light">
-        {{ adminName }}
-      </router-link> -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container">
+      <router-link :to="{ name: user ? 'home' : 'welcome' }" class="navbar-brand">
+        {{ appName }}
+      </router-link>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
         <span class="navbar-toggler-icon" />
       </button>
 
       <div id="navbar" class="collapse navbar-collapse">
-        
+        <ul class="navbar-nav">
+          <locale-dropdown />
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li> -->
+        </ul>
 
         <ul class="navbar-nav ms-auto">
           <!-- Authenticated -->
@@ -49,22 +54,21 @@
           </template>
         </ul>
       </div>
-    
+    </div>
   </nav>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import LocaleDropdown from '../LocaleDropdown'
+import LocaleDropdown from './LocaleDropdown'
 
 export default {
-    name: 'AdminHeader',
   components: {
     LocaleDropdown
   },
 
   data: () => ({
-    adminName: window.config.adminName
+    appName: window.config.appName
   }),
 
   computed: mapGetters({
@@ -83,13 +87,14 @@ export default {
 }
 </script>
 
-<style>
-  .profile-photo {
-    width: 2rem;
-    height: 2rem;
-    margin: -.375rem 0;
-  }
-  .admin-header {
-    background-color: #C6FF00;
-  }
+<style scoped>
+.profile-photo {
+  width: 2rem;
+  height: 2rem;
+  margin: -.375rem 0;
+}
+
+.container {
+  max-width: 1100px;
+}
 </style>
