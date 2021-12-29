@@ -9,6 +9,22 @@
       "categories": "Категории",
       "subcategories": "Подкатегории"
     },
+    "routes": {
+      
+      "admin": {
+        "dashboard": "Dashboard",
+        "subjects": {
+          "index": "Темы"
+        },
+        "categories": {
+          "index": "Категории"
+        },
+        "subcategories": {
+          "index": "Подкатегории"
+        }
+      }
+    },
+
     "resources": {
         "subjects": {
             "dataTable": {

@@ -35,7 +35,7 @@ class OAuthTest extends TestCase
     {
         $this->mockSocialite('github');
 
-        $this->postJson('/api/oauth/github')
+        $this->postJson('/api/admin/oauth/github')
             ->assertSuccessful()
             ->assertJson(['url' => 'https://url-to-provider']);
     }
@@ -53,7 +53,7 @@ class OAuthTest extends TestCase
 
         $this->withoutExceptionHandling();
 
-        $this->get('/api/oauth/github/callback')
+        $this->get('/api/admin/oauth/github/callback')
             ->assertText('token')
             ->assertSuccessful();
 
@@ -87,7 +87,7 @@ class OAuthTest extends TestCase
             'refreshToken' => 'updated-refresh-token',
         ]);
 
-        $this->get('/api/oauth/github/callback')
+        $this->get('/api/admin/oauth/github/callback')
             ->assertText('token')
             ->assertSuccessful();
 
@@ -105,7 +105,7 @@ class OAuthTest extends TestCase
 
         $this->mockSocialite('github', ['email' => 'test@example.com']);
 
-        $this->get('/api/oauth/github/callback')
+        $this->get('/api/admin/oauth/github/callback')
             ->assertText('Email already taken.')
             ->assertTextMissing('token')
             ->assertStatus(400);

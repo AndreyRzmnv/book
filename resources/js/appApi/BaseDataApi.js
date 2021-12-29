@@ -44,7 +44,6 @@ class BaseDataApiService extends BaseApi {
     return axios.delete(this.url.delete(id))
   }
   getIndexData () {
-    
     return axios.get(this.url.index() + '?index_data=true')
   }
 }

@@ -1,4 +1,4 @@
-import { $api } from '../routeApi/api';
+import { $api } from '../appApi/api';
 
 export default function (store) {
     try {

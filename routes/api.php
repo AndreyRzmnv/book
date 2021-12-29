@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminBaseController;
 use App\Http\Controllers\Admin\AdminMenu\AdminMenuController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
+use App\Http\Controllers\Admin\Subject\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => 'auth:api', 'prefix' => 'admin'], function () {
     
     Route::post('logout', [LoginController::class, 'logout']);
 
@@ -30,7 +32,9 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::patch('settings/profile', [ProfileController::class, 'update']);
     Route::patch('settings/password', [PasswordController::class, 'update']);
-    Route::get('menu', [AdminMenuController::class, 'index']);
+    // Route::get('menu', [AdminMenuController::class, 'index']);
+    
+    Route::resource('subjects', SubjectController::class);
 });
 Route::group(['middleware' => 'guest:api', 'prefix' => 'admin'], function () {
     Route::post('login', [LoginController::class, 'login']);
@@ -44,5 +48,7 @@ Route::group(['middleware' => 'guest:api', 'prefix' => 'admin'], function () {
 
     Route::post('oauth/{driver}', [OAuthController::class, 'redirect']);
     Route::get('oauth/{driver}/callback', [OAuthController::class, 'handleCallback'])->name('oauth.callback');
-    // 
+    
+    
+    
 });

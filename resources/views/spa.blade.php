@@ -2,7 +2,7 @@
 $config = [
     'adminName' => config('admin.name'),
     'appName' => config('app.name'),
-    'apiUrl' => config('app.url') . '/api',
+    'apiUrl' => config('app.url') . '/api/admin',
     'locale' => $locale = app()->getLocale(),
     'locales' => config('app.locales'),
     'githubAuth' => config('services.github.client_id'),

@@ -4,7 +4,7 @@
       <template>
         <v-app-bar-nav-icon @click="drawer = !drawer" />
         <v-spacer />
-        <!-- <user-menu /> -->
+        <user-menu />
       </template>
     </v-app-bar>
 
@@ -16,7 +16,7 @@
 			<v-list-item-content>
 				<v-list-item-title class="title">
 					<router-link
-					  :to="{ name: 'home' }"
+					  :to="{ name: 'admin.dashboard' }"
 					  tag="span"
 					  style="cursor: pointer"
 					  exact
@@ -147,12 +147,12 @@
 <script>
 import { mapGetters } from "vuex";
 import LocaleDropdown from "../LocaleDropdown";
-// import UserMenu from "./UserMenu";
+import UserMenu from "./UserMenu";
 
 export default {
   components: {
     LocaleDropdown,
-    // UserMenu,
+    UserMenu,
   },
   data: () => ({
     drawer: true,

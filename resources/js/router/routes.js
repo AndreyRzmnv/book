@@ -31,18 +31,13 @@ export default [
   },
   {
     path: '/admin',
-    name: 'dashboard',
+    name: 'admin.dashboard',
     component: page('app/admin/index.vue'),
     meta: {
       middleware: ['auth']
     },
 
     children: [
-      {
-        path: '/admin', 
-        name: 'admin.index',
-        component: page('app/admin/index.vue'),
-      },
       {
         path: 'subjects', 
         name: 'admin.subjects',
@@ -73,17 +68,17 @@ export default [
           {
             path: '/categories',
             name: 'admin.categories.index', 
-            component: page('app/categories/index.vue'),
+            component: page('app/admin/categories/index.vue'),
           },
           {
             path: 'create', 
             name: 'admin.categories.create', 
-            component: page('app/categories/create.vue'),
+            component: page('app/admin/categories/create.vue'),
           },
           {
             path: 'edit', 
             name: 'admin.categories.edit', 
-            component: page('app/categories/edit.vue'),
+            component: page('app/admin/categories/edit.vue'),
           },
         ]
       },

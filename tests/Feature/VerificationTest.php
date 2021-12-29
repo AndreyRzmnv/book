@@ -45,7 +45,7 @@ class VerificationTest extends TestCase
     {
         $user = User::factory()->create(['email_verified_at' => null]);
 
-        $this->postJson("/api/email/verify/{$user->id}")
+        $this->postJson("/api/admin/email/verify/{$user->id}")
             ->assertStatus(400)
             ->assertJsonFragment(['status' => 'The verification link is invalid.']);
     }
@@ -57,7 +57,7 @@ class VerificationTest extends TestCase
 
         Notification::fake();
 
-        $this->postJson('/api/email/resend', ['email' => $user->email])
+        $this->postJson('/api/admin/email/resend', ['email' => $user->email])
             ->assertSuccessful();
 
         Notification::assertSentTo($user, VerifyEmail::class);
@@ -66,7 +66,7 @@ class VerificationTest extends TestCase
     /** @test */
     public function can_not_resend_verification_notification_if_email_does_not_exist()
     {
-        $this->postJson('/api/email/resend', ['email' => 'foo@bar.com'])
+        $this->postJson('/api/admin/email/resend', ['email' => 'foo@bar.com'])
             ->assertStatus(422)
             ->assertJsonFragment(['errors' => ['email' => ['We can\'t find a user with that e-mail address.']]]);
     }
@@ -78,7 +78,7 @@ class VerificationTest extends TestCase
 
         Notification::fake();
 
-        $this->postJson('/api/email/resend', ['email' => $user->email])
+        $this->postJson('/api/admin/email/resend', ['email' => $user->email])
             ->assertStatus(422)
             ->assertJsonFragment(['errors' => ['email' => ['The email is already verified.']]]);
 

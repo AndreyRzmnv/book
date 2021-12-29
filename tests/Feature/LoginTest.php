@@ -12,7 +12,7 @@ class LoginTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $this->postJson('/api/login', [
+        $this->postJson('/api/admin/login', [
             'email' => $user->email,
             'password' => 'password',
         ])
@@ -25,7 +25,7 @@ class LoginTest extends TestCase
     public function fetch_the_current_user()
     {
         $this->actingAs(User::factory()->create())
-            ->getJson('/api/user')
+            ->getJson('/api/admin/user')
             ->assertSuccessful()
             ->assertJsonStructure(['id', 'name', 'email']);
     }
@@ -33,15 +33,15 @@ class LoginTest extends TestCase
     /** @test */
     public function log_out()
     {
-        $token = $this->postJson('/api/login', [
+        $token = $this->postJson('/api/admin/login', [
             'email' => User::factory()->create()->email,
             'password' => 'password',
         ])->json()['token'];
 
-        $this->postJson("/api/logout?token=$token")
+        $this->postJson("/api/admin/logout?token=$token")
             ->assertSuccessful();
 
-        $this->getJson("/api/user?token=$token")
+        $this->getJson("/api/admin/user?token=$token")
             ->assertStatus(401);
     }
 }

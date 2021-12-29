@@ -12,7 +12,7 @@ class SettingsTest extends TestCase
     public function update_profile_info()
     {
         $this->actingAs($user = User::factory()->create())
-            ->patchJson('/api/settings/profile', [
+            ->patchJson('/api/admin/settings/profile', [
                 'name' => 'Test User',
                 'email' => 'test@test.app',
             ])
@@ -30,7 +30,7 @@ class SettingsTest extends TestCase
     public function update_password()
     {
         $this->actingAs($user = User::factory()->create())
-            ->patchJson('/api/settings/password', [
+            ->patchJson('/api/admin/settings/password', [
                 'password' => 'updated',
                 'password_confirmation' => 'updated',
             ])

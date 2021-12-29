@@ -19,8 +19,9 @@ class AdminBaseController extends Controller
      */
     public function index()
     {
-        return response()->json($this->service->indexData());
+        return $this->service->dataTable();
     }
+
 
     /**
      * Show the form for creating a new resource.

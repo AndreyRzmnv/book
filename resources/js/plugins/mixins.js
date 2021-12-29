@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { $api } from '../routeApi/api'
+import { $api } from '../appApi/api'
 
 Vue.mixin({
   computed: {

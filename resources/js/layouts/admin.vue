@@ -14,7 +14,7 @@
 import Navbar from '../components/Admin/Navbar'
 
 export default {
-  name: 'AppLayout',
+  name: 'AdminLayout',
   components: {
     Navbar
   },
