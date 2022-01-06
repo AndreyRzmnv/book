@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'admin'], function () {
 
     Route::patch('settings/profile', [ProfileController::class, 'update']);
     Route::patch('settings/password', [PasswordController::class, 'update']);
-    // Route::get('menu', [AdminMenuController::class, 'index']);
+    Route::get('menu', [AdminMenuController::class, 'index']);
     
     Route::resource('subjects', SubjectController::class);
 });

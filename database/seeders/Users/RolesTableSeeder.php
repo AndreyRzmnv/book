@@ -20,11 +20,16 @@ class RolesTableSeeder extends Seeder
                 'name' => $role
             ]);
         }
-        foreach ($roles['permissions'] as $permissionKey => $permission) {
-            foreach ($permission as $type) {
-                Permission::firstOrCreate([
-                    'name' => $type . '-' . $permissionKey,
-                ]);
+        foreach ($roles['permissions'] as $permissionKey => $permissions) {
+            foreach ($permissions as $types) {
+                $types = explode(',', $types);
+                
+                foreach ($types as $type) {
+                    Permission::firstOrCreate([
+                        'name' => $roles['permission_map'][$type] . '-' . $permissionKey,
+                    ]);
+                }
+                
             }
         }
         
