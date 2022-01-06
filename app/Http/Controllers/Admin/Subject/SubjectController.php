@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Subject;
 use App\Http\Controllers\Admin\AdminBaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Subjects\Subject;
+use App\Policies\SubjectPolicy;
 use App\Services\Admin\Subject\SubjectService;
 use Illuminate\Http\Request;
 
@@ -13,17 +14,9 @@ class SubjectController extends AdminBaseController
     
     public function __construct(SubjectService $service)
     {
+        $this->authorizeResource(SubjectPolicy::class);
         $this->service = $service;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function index()
-    // {
-    //     dd('qwe');
-    // }
 
     /**
      * Show the form for creating a new resource.

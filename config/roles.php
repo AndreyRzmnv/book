@@ -8,7 +8,7 @@ return [
         'd' => 'delete',
     ],
     'permissions' => [
-        'subjects' => ['open'],
+        'subjects' => ['c,r,u,d'],
     ],
     'roles' => [
         'admin'
