@@ -3,14 +3,22 @@
     "search": "Поиск",
     "settings": "Настройки",
     "logout": "Выход",
-    "admin": {"dashboard": "Dashboard"},
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "cancel": "Отмена",
+    "success": "Успешно",
+    "error": "Ошибка",
+    "name": "Название",
+    "save": "Сохранить",
+    "admin": {
+      "dashboard": "Dashboard"
+    },
     "menu": {
       "subjects": "Темы",
       "categories": "Категории",
       "subcategories": "Подкатегории"
     },
     "routes": {
-      
       "admin": {
         "dashboard": "Dashboard",
         "subjects": {
@@ -24,7 +32,6 @@
         }
       }
     },
-
     "resources": {
         "subjects": {
             "dataTable": {
@@ -32,6 +39,11 @@
                     "name": "Название",
                     "actions": "Действия"
                 }
+            },
+            "titles": {
+              "create": "Создание темы",
+              "edit": "Редактирование темы",
+              "delete": "Удалить тему?"
             }
         }
     },

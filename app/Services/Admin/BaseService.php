@@ -34,8 +34,10 @@ class BaseService
     {
         return function ($element){
             $actions = [];
-            $actions[] = 'update';
-            $actions[] = 'delete';
+            if(auth()->user()->can('update-' . $this->permission))
+                $actions[] = 'update';
+            if(auth()->user()->can('delete-' . $this->permission))
+                $actions[] = 'delete';
 
             return $actions;
         };
@@ -46,7 +48,6 @@ class BaseService
      */
     protected function constructDataTableQuery()
     {
-        // dd($this->model);
         return DataTables::of($this->model)
             ->only($this->tableColumns())
             ->addColumn('actions', $this->actionColumnDT())
@@ -113,45 +114,15 @@ class BaseService
      */
     public function update($request)
     {
-        $requestValidated = $request->validated();
-
-        return $this->model->update($requestValidated);
+        return $this->model->update($request);
     }
 
     /**
-     * Удаляем элемент
+     * Удаление элемента модели
      */
-    public function removeElement()
+    public function destroy($id)
     {
-        return $this->model->delete();
-    }
-
-    /**
-     * Собираем данные для Excel, отсортируем для соответсвия шапке и уберем лишние колонки, которых нет в шапке
-     */
-    protected function collectDataExcel($data, $columns)
-    {
-        $sColumns = array_flip(array_keys($columns));
-
-        if(!empty($data)) {
-            foreach($data as $key => $value) {
-
-                $newArray = array_intersect_key($value, $columns);
-                foreach($newArray as &$arr) {
-                    $arr = strip_tags($arr);
-                    $arr = str_replace('&nbsp;', ' ', $arr);
-                    $arr = str_replace('&quot;', '"', $arr);
-                }
-                uksort($newArray, function ($a, $b) use($sColumns) {
-
-                    return $sColumns[$a] > $sColumns[$b];
-                });
-
-                $data[$key] = $newArray;
-            }
-        }
-
-        return $data;
+        return $this->model->find($id)->delete();
     }
 
     public function search($request)
