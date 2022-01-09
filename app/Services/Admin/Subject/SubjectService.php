@@ -4,10 +4,10 @@ namespace App\Services\Admin\Subject;
 use App\Http\Resources\Subject\SubjectResource;
 use App\Models\Subjects\Subject;
 use App\Services\Admin\BaseService;
-// use Yajra\DataTables\Facades\DataTables;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 class SubjectService extends BaseService
 {
+    protected $permission = 'subjects';
     public function __construct()
     {
         parent::__construct(Subject::query());
@@ -16,13 +16,16 @@ class SubjectService extends BaseService
     {
         return $this->model
             ->select(
-                'subjects.*'
+                'id',
+                'name',
             );
     }
 
     protected function constructDataTableQuery()
     {
         return DataTables::of($this->getModelForDataTable())
+            ->only($this->tableColumns())
+            ->addColumn('actions', $this->actionColumnDT())
         // ->setTransformer(function (Subject $subject) {
         //     return SubjectResource::make($subject)->resolve();
         // })
@@ -34,15 +37,6 @@ class SubjectService extends BaseService
             //         'delete' => true,
             //     ];
             // })
-            ;
+        ;
     }
-
-    /**
-     * Формирует данные для шаблона "Список элементов"
-     */
-    public function dataTable()
-    {
-        return $this->constructDataTableQuery()->toJson();
-    }
-
 }

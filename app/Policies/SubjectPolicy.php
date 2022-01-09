@@ -18,7 +18,7 @@ class SubjectPolicy
      */
     public function viewAny(User $user)
     {
-        
+        return $user->can('read-subjects');
     }
 
     /**
@@ -30,7 +30,7 @@ class SubjectPolicy
      */
     public function view(User $user, Subject $subject)
     {
-        //
+        return $user->can('read-subjects');
     }
 
     /**
@@ -41,7 +41,7 @@ class SubjectPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('create-subjects');
     }
 
     /**
@@ -53,7 +53,7 @@ class SubjectPolicy
      */
     public function update(User $user, Subject $subject)
     {
-        //
+        return $user->can('update-subjects');
     }
 
     /**
@@ -65,7 +65,7 @@ class SubjectPolicy
      */
     public function delete(User $user, Subject $subject)
     {
-        //
+        return $user->can('delete-subjects');
     }
 
     /**
