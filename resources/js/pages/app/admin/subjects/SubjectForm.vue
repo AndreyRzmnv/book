@@ -65,7 +65,7 @@ export default {
       } else {
         await this.form.post(this.$api.office.url.store())
       }
-      // this.$toast.success(this.$t('saved'))
+      this.$toastr.s(this.$t('saved'))
       this.$emit('success')
     }
   }
