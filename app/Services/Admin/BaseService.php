@@ -112,9 +112,9 @@ class BaseService
     /**
      * Обновление записи в БД
      */
-    public function update($request)
+    public function update($request, $model)
     {
-        return $this->model->update($request);
+        return $model->update($request);
     }
 
     /**

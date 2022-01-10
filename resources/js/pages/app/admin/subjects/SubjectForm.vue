@@ -55,15 +55,14 @@ export default {
     
     if (this.model) {
       this.form.fill(this.model)
-      console.log(this.form);
     }
   },
   methods: {
     async submit () {
       if (this.model) {
-        await this.form.put(this.$api.office.url.update(this.model.id))
+        await this.form.put(this.$api.subject.url.update(this.model.id))
       } else {
-        await this.form.post(this.$api.office.url.store())
+        await this.form.post(this.$api.subject.url.store())
       }
       this.$toastr.s(this.$t('saved'))
       this.$emit('success')
