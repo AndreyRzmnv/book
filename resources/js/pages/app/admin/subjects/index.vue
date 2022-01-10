@@ -83,12 +83,17 @@ export default {
   },
   created() {
     this.url = this.$api.subject.url.index();
-    console.log(this);
   },
   methods: {
     showDialog(item){
       this.model = item;
       this.showForm = true;
+    },
+    closeForm(){
+      this.showForm = false;
+    },
+    formSuccess(){
+      this.closeForm();
     },
     successDeleting(data){
       this.$refs.datatable.getData();

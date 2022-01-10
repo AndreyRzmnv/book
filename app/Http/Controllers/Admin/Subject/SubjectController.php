@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Subject;
 
 use App\Http\Controllers\Admin\AdminBaseController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Subject\SubjectUpdateRequest;
 use App\Models\Subjects\Subject;
 use App\Policies\SubjectPolicy;
 use App\Services\Admin\Subject\SubjectService;
@@ -68,8 +69,20 @@ class SubjectController extends AdminBaseController
      * @param  \App\Models\Subjects\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subject $subject)
+    public function update(SubjectUpdateRequest $request, Subject $subject)
     {
-        //
+        $this->service->model = $subject;
+        $this->service->baseUpdate($subject, $request->validated());
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        return $this->service->destroy($id);
     }
 }
