@@ -3,11 +3,13 @@ namespace App\Services\Admin\Subject;
 
 use App\Http\Resources\Subject\SubjectResource;
 use App\Models\Subjects\Subject;
-use App\Services\Admin\BaseService;
+use App\Services\Admin\AdminBaseService;
 use Yajra\DataTables\Facades\DataTables;
-class SubjectService extends BaseService
+
+class SubjectService extends AdminBaseService
 {
-    protected $permission = 'subjects';
+    public $permission = 'subjects';
+    
     public function __construct()
     {
         parent::__construct(Subject::query());

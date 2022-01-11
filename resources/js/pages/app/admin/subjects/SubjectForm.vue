@@ -16,7 +16,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <cancel-button @click="$emit('cancel')" />
+        <cancel-button @cancel="$emit('cancel')" />
         <submit-button :loading="form.busy" />
       </v-card-actions>
     </v-card>
@@ -52,10 +52,10 @@ export default {
     }
   },
   created () {
-    
     if (this.model) {
       this.form.fill(this.model)
     }
+
   },
   methods: {
     async submit () {

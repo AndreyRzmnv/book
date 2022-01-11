@@ -16,7 +16,7 @@ class SubjectController extends AdminBaseController
     public function __construct(SubjectService $service)
     {
         $this->authorizeResource(SubjectPolicy::class);
-        $this->service = $service;
+        parent::__construct($service);
     }
 
     /**
@@ -69,10 +69,10 @@ class SubjectController extends AdminBaseController
      * @param  \App\Models\Subjects\Subject  $subject
      * @return \Illuminate\Http\Response
      */
+
     public function update(SubjectUpdateRequest $request, Subject $subject)
     {
-        $this->service->model = $subject;
-        $this->service->baseUpdate($subject, $request->validated());
+        return $this->baseUpdate($request->validated(), $subject);
     }
 
     /**

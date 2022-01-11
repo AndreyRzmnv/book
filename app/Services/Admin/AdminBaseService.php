@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
-class BaseService
+class AdminBaseService
 {
-    protected $model;
+    public $model;
 
     /**
      * Service constructor.
@@ -66,55 +66,55 @@ class BaseService
      */
     public function dataTable()
     {
-        
         return $this->constructDataTableQuery()->toJson();
     }
 
     /**
      * Формирует данные для шаблона "Список элементов"
      */
-    public function outputData()
-    {
-        return [];
-    }
+    // public function outputData()
+    // {
+    //     return [];
+    // }
 
     /**
      * Данные для создания элемента
      */
-    public function createData()
-    {
-        return [];
-    }
+    // public function createData()
+    // {
+    //     return [];
+    // }
 
     /**
      * Данные для редактирования элемента
      */
-    public function editData()
-    {
-        $data = $this->createData();
+    // public function editData()
+    // {
+    //     $data = $this->createData();
 
-        $data += [
-            'element' => $this->model
-        ];
+    //     $data += [
+    //         'element' => $this->model
+    //     ];
 
-        return $data;
-    }
+    //     return $data;
+    // }
 
     /**
      * Создание записи в БД
      */
-    public function store($request)
-    {
-        $requestValidated = $request->validated();
-        return $this->model->create($requestValidated);
-    }
+    // public function store($request)
+    // {
+    //     $requestValidated = $request->validated();
+    //     return $this->model->create($requestValidated);
+    // }
 
     /**
      * Обновление записи в БД
      */
-    public function update($request, $model)
+    public function update($request)
     {
-        return $model->update($request);
+        
+        return $this->model->update($request);
     }
 
     /**

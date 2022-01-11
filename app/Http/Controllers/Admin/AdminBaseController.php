@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 
 class AdminBaseController extends Controller
 {
-    public $service;
-    public function __construct($service)
+    protected $service;
+
+    public function __construct($service = null)
     {
         $this->service = $service;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -66,17 +68,20 @@ class AdminBaseController extends Controller
     //     //
     // }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function update(Request $request, $id)
-    // {
-        
-    // }
+    // /**
+    //  * Update the specified resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    protected function baseUpdate($request, $model)
+    {
+        $this->service->model = $model;
+        // dd($this->service->model);
+        return $this->service->update($request);
+
+    }
 
     /**
      * Remove the specified resource from storage.
