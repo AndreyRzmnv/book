@@ -1,5 +1,10 @@
 <template>
     <v-card>
+      <v-card-title>
+        <create-button
+          @showCreateForm="create"
+        />
+      </v-card-title>
       <v-card-text>
         <data-table
           ref="datatable"
@@ -8,21 +13,19 @@
           :search="search"
           :filters="filters"
         >
-        
           <template #item.actions="{ item }">
             <div
               v-if="item.actions"
               class="d-inline-flex"
             >
               <edit-button
-                @showDialog="showDialog(item)"
-              >
-              </edit-button>
+                @showDialog="edit(item)"
+              />
+              
               <delete-button
                 :url="$api.subject.url.delete(item.id)"
-                icon
                 :title="$t('resources.subjects.titles.delete')"
-                @successDeleting="successDeleting"
+                @deletingSuccess="deletingSuccess"
               />
             </div>
           </template>
@@ -31,6 +34,7 @@
       <v-dialog v-model="showForm" max-width="400">
         <subject-form
           :v-if="showForm"
+          :key="formKey"
           :model="model"
           @cancel="closeForm"
           @success="formSuccess"
@@ -44,12 +48,14 @@
 import DataTable from '../../../../components/Admin/DataTable/DataTable'
 import EditButton from '../../../../components/Admin/DataTable/EditButton'
 import DeleteButton from '../../../../components/Admin/DataTable/DeleteButton'
+import CreateButton from '../../../../components/Admin/CreateButton'
 import SubjectForm from './SubjectForm'
 export default {
   components: {
     DataTable,
     EditButton,
     DeleteButton,
+    CreateButton,
     SubjectForm,
   },
   data() {
@@ -57,6 +63,7 @@ export default {
       url: '',
       search: '',
       showForm: false,
+      formKey: 1,
       model: null,
       defaultFilters: {
 
@@ -85,8 +92,14 @@ export default {
     this.url = this.$api.subject.url.index();
   },
   methods: {
-    showDialog(item){
+    create(){
+      this.model = null;
+      this.formKey++;
+      this.showForm = true;
+    },
+    edit(item){
       this.model = item;
+      this.formKey++;
       this.showForm = true;
     },
     closeForm(){
@@ -94,8 +107,9 @@ export default {
     },
     formSuccess(){
       this.closeForm();
+      this.$refs.datatable.getData();
     },
-    successDeleting(data){
+    deletingSuccess(data){
       this.$refs.datatable.getData();
     }
   },

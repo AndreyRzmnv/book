@@ -64,11 +64,11 @@ export default {
     submit() {
       axios.delete(this.url)
         .then((data) => {
-          this.$emit('successDeleting', data)
+          this.$emit('deletingSuccess', data)
           this.$toastr.s(this.$t('success'));
         })
         .catch(error => {
-          this.$emit('errorDeleting', error.response)
+          this.$emit('deletingError', error.response)
           this.$toastr.e(this.$t('error'));
         })
         .finally(() => {
