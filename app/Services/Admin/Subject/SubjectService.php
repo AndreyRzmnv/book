@@ -28,10 +28,21 @@ class SubjectService extends AdminBaseService
         return DataTables::of($this->getModelForDataTable())
             ->only($this->tableColumns())
             ->addColumn('actions', $this->actionColumnDT())
-        // ->setTransformer(function (Subject $subject) {
-        //     return SubjectResource::make($subject)->resolve();
-        // })
+            // ->setTransformer(function (Subject $subject) {
+            //     return SubjectResource::make($subject)->resolve();
+            // })
+            // ->filterColumn('city', function ($query, $keyword) {
+            //     $query->whereHas('city', function ($query) use ($keyword) {
+            //         $query
+            //             ->where('title', 'LIKE',  "%" . $keyword . "%")
+            //             ;
+            //     });
+            // })
+            // ->filter(function (Builder $query) {
+            //     $this->applyFilters($query, request());
+            // }, true);
 
+            
             
             // ->addColumn('actions', function (Message $message) {
             //     return [

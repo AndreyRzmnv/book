@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Subject;
 
 use App\Http\Controllers\Admin\AdminBaseController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Subject\SubjectStoreRequest;
 use App\Http\Requests\Subject\SubjectUpdateRequest;
 use App\Models\Subjects\Subject;
 use App\Policies\SubjectPolicy;
@@ -35,9 +36,9 @@ class SubjectController extends AdminBaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubjectStoreRequest $request)
     {
-        //
+        return $this->baseStore($request->validated());
     }
 
     /**
@@ -81,8 +82,8 @@ class SubjectController extends AdminBaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Subject $subject)
     {
-        return $this->service->destroy($id);
+        return $this->baseDestroy($subject);
     }
 }

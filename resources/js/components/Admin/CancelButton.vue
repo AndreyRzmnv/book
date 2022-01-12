@@ -1,8 +1,5 @@
 <template>
     <v-btn
-        color="grey darken-2"
-        dark
-        elevation="5"
         @click="$emit('cancel')"
     >
         {{$t('cancel')}}

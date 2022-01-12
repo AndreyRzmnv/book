@@ -41,10 +41,10 @@ class AdminBaseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
+    public function baseStore($request)
+    {
+        return $this->service->store($request);
+    }
 
     /**
      * Display the specified resource.
@@ -68,17 +68,16 @@ class AdminBaseController extends Controller
     //     //
     // }
 
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     protected function baseUpdate($request, $model)
     {
         $this->service->model = $model;
-        // dd($this->service->model);
         return $this->service->update($request);
 
     }
@@ -89,8 +88,9 @@ class AdminBaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function baseDestroy($model)
     {
-        return $this->service->destroy($id);
+        $this->service->model = $model;
+        return $this->service->destroy($model);
     }
 }
