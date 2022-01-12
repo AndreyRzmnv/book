@@ -2,7 +2,7 @@
   <v-btn
     v-bind="$attrs"
     type="submit"
-    color="primary"
+    color="success"
     v-on="$listeners"
   >
     {{ $t('save') }}

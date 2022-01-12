@@ -102,11 +102,10 @@ class AdminBaseService
     /**
      * Создание записи в БД
      */
-    // public function store($request)
-    // {
-    //     $requestValidated = $request->validated();
-    //     return $this->model->create($requestValidated);
-    // }
+    public function store($request)
+    {
+        return $this->model->create($request);
+    }
 
     /**
      * Обновление записи в БД
@@ -120,9 +119,9 @@ class AdminBaseService
     /**
      * Удаление элемента модели
      */
-    public function destroy($id)
+    public function destroy()
     {
-        return $this->model->find($id)->delete();
+        return $this->model->delete();
     }
 
     public function search($request)
