@@ -1,31 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Category;
+namespace App\Http\Controllers\Admin\Category;
 
+use App\Http\Controllers\Admin\AdminBaseController;
 use App\Http\Controllers\Controller;
-use App\Models\Categories\Category;
-use Illuminate\Http\Request;
+use App\Http\Requests\Category\CategoryStoreRequest;
+use App\Http\Requests\Category\CategoryUpdateRequest;
+use App\Models\Category\Category;
+use App\Services\Admin\Category\CategoryService;
 
-class CategoryController extends Controller
+class CategoryController extends AdminBaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct(CategoryService $service)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $this->authorizeResource(CategoryPolicy::class);
+        parent::__construct($service);
     }
 
     /**
@@ -34,31 +23,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Categories\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Categories\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
+        return $this->baseStore($request->validated());
     }
 
     /**
@@ -68,9 +35,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Categories\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
-        //
+        return $this->baseUpdate($request->validated(), $category);
     }
 
     /**
@@ -81,6 +48,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        return $this->baseDestroy($category);
     }
 }

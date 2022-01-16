@@ -1,17 +1,17 @@
 <?php
-namespace App\Services\Admin\Subject;
+namespace App\Services\Admin\Category;
 
-use App\Models\Subject\Subject;
+use App\Models\Category\Category;
 use App\Services\Admin\AdminBaseService;
 use Yajra\DataTables\Facades\DataTables;
 
-class SubjectService extends AdminBaseService
+class CategoryService extends AdminBaseService
 {
-    public $permission = 'subjects';
+    public $permission = 'categories';
     
     public function __construct()
     {
-        parent::__construct(Subject::query());
+        parent::__construct(Category::query());
     }
 
     /**
@@ -21,10 +21,10 @@ class SubjectService extends AdminBaseService
     {
         return $this->model
             ->select(
-                'id',
-                'name',
-                'color',
-            );
+                'categories.id',
+                'categories.name',
+                'categories.subject_id',
+            )->with(['subject:id,name']);
     }
 
     /**
@@ -42,6 +42,6 @@ class SubjectService extends AdminBaseService
      */
     protected function tableColumns()
     {
-        return [ 'id', 'name', 'color', 'actions' ];
+        return [ 'id', 'name', 'subject.id', 'subject.name', 'actions' ];
     }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Subject\Subject;
+use App\Models\Category\Category;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SubjectPolicy
+class CategoryPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class SubjectPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('read-subjects');
+        return $user->can('read-categories');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subjects\Subject  $subject
+     * @param  \App\Models\Category\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Subject $subject)
+    public function view(User $user, Category $category)
     {
-        return $user->can('read-subjects');
+        return $user->can('read-categories');
     }
 
     /**
@@ -41,41 +41,41 @@ class SubjectPolicy
      */
     public function create(User $user)
     {
-        return $user->can('create-subjects');
+        return $user->can('create-categories');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subjects\Subject  $subject
+     * @param  \App\Models\Category\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Subject $subject)
+    public function update(User $user, Category $category)
     {
-        return $user->can('update-subjects');
+        return $user->can('update-categories');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subjects\Subject  $subject
+     * @param  \App\Models\Category\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Subject $subject)
+    public function delete(User $user, Category $category)
     {
-        return $user->can('delete-subjects');
+        return $user->can('delete-categories');
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subjects\Subject  $subject
+     * @param  \App\Models\Category\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Subject $subject)
+    public function restore(User $user, Category $category)
     {
         //
     }
@@ -84,10 +84,10 @@ class SubjectPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Subjects\Subject  $subject
+     * @param  \App\Models\Category\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Subject $subject)
+    public function forceDelete(User $user, Category $category)
     {
         //
     }

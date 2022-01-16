@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Admin\Subject\SubjectController;
+use App\Http\Controllers\Admin\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,11 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'admin'], function () {
     Route::patch('settings/password', [PasswordController::class, 'update']);
     Route::get('menu', [AdminMenuController::class, 'index']);
     
-    Route::resource('subjects', SubjectController::class);
+    // Темы
+    Route::apiResource('subjects', SubjectController::class)->except(['show']);
+    Route::get('subjects/search', [SubjectController::class, 'search']);
+    // Категории
+    Route::apiResource('categories', CategoryController::class)->except(['show']);
 });
 Route::group(['middleware' => 'guest:api', 'prefix' => 'admin'], function () {
     Route::post('login', [LoginController::class, 'login']);

@@ -46,8 +46,8 @@
               />
               
               <delete-button
-                :url="$api.subject.url.delete(item.id)"
-                :title="$t('resources.subjects.titles.delete')"
+                :url="$api.category.url.delete(item.id)"
+                :title="$t('resources.categories.titles.delete')"
                 @deletingSuccess="deletingSuccess"
               />
             </div>
@@ -56,7 +56,7 @@
         </data-table>
       </v-card-text>
       <v-dialog v-model="showForm" max-width="400">
-        <subject-form
+        <category-form
           :v-if="showForm"
           :key="formKey"
           :model="model"
@@ -73,14 +73,14 @@ import DataTable from '../../../../components/Admin/DataTable/DataTable'
 import EditButton from '../../../../components/Admin/DataTable/EditButton'
 import DeleteButton from '../../../../components/Admin/DataTable/DeleteButton'
 import CreateButton from '../../../../components/Admin/CreateButton'
-import SubjectForm from './SubjectForm'
+import CategoryForm from './CategoryForm'
 export default {
   components: {
     DataTable,
     EditButton,
     DeleteButton,
     CreateButton,
-    SubjectForm,
+    CategoryForm,
   },
   data() {
     return {
@@ -105,16 +105,16 @@ export default {
     // }),
     headers () {
       return [
-        { text: 'ID', value: 'id', width: '1%'},
-        { text: this.$t('resources.subjects.fields.name'), value: 'name' },
-        { text: this.$t('resources.subjects.fields.color'), value: 'color' },
-        { text: this.$t('resources.subjects.fields.actions'), value: 'actions', width: '1%'},
+        { text: 'ID', value: 'id'},
+        { text: this.$t('resources.categories.fields.name'), value: 'name' },
+        { text: this.$t('resources.categories.fields.subject'), value: 'subject.name' },
+        { text: this.$t('resources.categories.fields.actions'), value: 'actions', width: '1%'},
       ]
     },
     
   },
   created() {
-    this.url = this.$api.subject.url.index();
+    this.url = this.$api.category.url.index();
   },
   methods: {
     create(){

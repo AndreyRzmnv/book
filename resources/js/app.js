@@ -8,7 +8,6 @@ import vuetify from './plugins/vuetify'
 
 import '~/plugins'
 import '~/components'
-
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
@@ -16,6 +15,5 @@ new Vue({
   store,
   router,
   vuetify,
-  // api,
   ...App
 })

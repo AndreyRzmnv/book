@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\AdminBaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Subject\SubjectStoreRequest;
 use App\Http\Requests\Subject\SubjectUpdateRequest;
-use App\Models\Subjects\Subject;
+use App\Models\Subject\Subject;
 use App\Policies\SubjectPolicy;
 use App\Services\Admin\Subject\SubjectService;
 use Illuminate\Http\Request;
@@ -21,16 +21,6 @@ class SubjectController extends AdminBaseController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -39,28 +29,6 @@ class SubjectController extends AdminBaseController
     public function store(SubjectStoreRequest $request)
     {
         return $this->baseStore($request->validated());
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Subjects\Subject  $subject
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Subject $subject)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Subjects\Subject  $subject
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Subject $subject)
-    {
-        //
     }
 
     /**

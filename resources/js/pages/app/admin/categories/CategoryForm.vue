@@ -13,12 +13,16 @@
           :error-messages="form.errors.get('title')"
           required
         />
-        <v-color-picker
-          v-model="form.color"
-          dot-size="19"
-          mode="hexa"
-          swatches-max-height="250"
-        ></v-color-picker>
+        <api-autocomplete
+          v-model="form.subject"
+          :url="$api.subject.url.search()"
+          :label="$t('resources.categories.fields.subject')"
+          item-text="name"
+          :error-messages="form.errors.get('subject_id')"
+          dense
+          lazy-load
+        />
+
       </v-card-text>
       
       <v-card-actions>
@@ -32,12 +36,14 @@
 
 <script>
 import Form from 'vform'
+import ApiAutocomplete from '../../../../components/Admin/ApiAutocomplete'
 import SubmitButton from '../../../../components/Admin/SubmitButton'
 import CancelButton from '../../../../components/Admin/CancelButton'
 
 export default {
-  name: 'SubjectForm',
+  name: 'CategoryForm',
   components: {
+    ApiAutocomplete,
     SubmitButton,
     CancelButton
   },
@@ -48,7 +54,7 @@ export default {
     return {
       form: new Form({
         name: '',
-        color: '',
+        subject: null,
       }),
     }
   },
@@ -67,13 +73,15 @@ export default {
   },
   methods: {
     async submit () {
-      if (this.model) {
-        await this.form.put(this.$api.subject.url.update(this.model.id))
-      } else {
-        await this.form.post(this.$api.subject.url.store())
-      }
-      this.$toastr.s(this.$t('saved'))
-      this.$emit('success')
+      this.form.subject_id = this.form.subject.id;
+      console.log(this.form);
+      // if (this.model) {
+      //   await this.form.put(this.$api.category.url.update(this.model.id))
+      // } else {
+      //   await this.form.post(this.$api.subject.url.store())
+      // }
+      // this.$toastr.s(this.$t('saved'))
+      // this.$emit('success')
     }
   }
 }

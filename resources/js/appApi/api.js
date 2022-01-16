@@ -1,5 +1,6 @@
 import MenuApi from './MenuApi'
 import SubjectApi from './SubjectApi'
+import CategoryApi from './CategoryApi'
 
 
 
@@ -7,6 +8,7 @@ import SubjectApi from './SubjectApi'
 export const $api = {
   menuApi: new MenuApi(),
   subject: new SubjectApi(),
+  category: new CategoryApi(),
 
 
   }

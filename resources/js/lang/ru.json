@@ -11,6 +11,7 @@
     "name": "Название",
     "save": "Сохранить",
     "add": "Добавить",
+    "profile": "Профиль",
     "admin": {
       "dashboard": "Dashboard"
     },
@@ -35,18 +36,28 @@
     },
     "resources": {
         "subjects": {
-            "dataTable": {
-                "headers": {
-                    "name": "Название",
-                    "color": "Цвет",
-                    "actions": "Действия"
-                }
-            },
-            "titles": {
-              "create": "Создание темы",
-              "edit": "Редактирование темы",
-              "delete": "Удалить тему?"
-            }
+          "fields": {
+            "name": "Название",
+            "color": "Цвет",
+            "actions": "Действия"
+          },
+          "titles": {
+            "create": "Создание темы",
+            "edit": "Редактирование темы",
+            "delete": "Удалить тему?"
+          }
+        },
+        "categories": {
+          "fields": {
+            "name": "Название",
+            "subject": "Тема",
+            "actions": "Действия"
+          },
+          "titles": {
+            "create": "Создание категории",
+            "edit": "Редактирование категории",
+            "delete": "Удалить категорию?"
+          }
         }
     },
 

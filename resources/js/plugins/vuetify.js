@@ -9,6 +9,7 @@ import ru from 'vuetify/es5/locale/ru'
 
 Vue.use(Vuetify)
 const opts = {
+    theme: { dark: true },
     lang: {
         locales: { en, ru },
         current: store.getters['lang/locale'] || 'en',
