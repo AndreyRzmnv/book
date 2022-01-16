@@ -93,4 +93,13 @@ class AdminBaseController extends Controller
         $this->service->model = $model;
         return $this->service->destroy($model);
     }
+
+    /**
+     * Search resource in db.
+     */
+    public function search(Request $request)
+    {
+        return $this->service->search($request->toArray());
+    }
+
 }

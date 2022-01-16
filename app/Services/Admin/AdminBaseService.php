@@ -1,7 +1,6 @@
 <?php
 namespace App\Services\Admin;
 
-// use DataTables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -54,6 +53,28 @@ class AdminBaseService
             ->filter(function (Builder $query) {
                 $this->applyFilters($query, request());
             }, true);
+            // ->setTransformer(function (Subject $subject) {
+            //     return SubjectResource::make($subject)->resolve();
+            // })
+            // ->filterColumn('city', function ($query, $keyword) {
+            //     $query->whereHas('city', function ($query) use ($keyword) {
+            //         $query
+            //             ->where('title', 'LIKE',  "%" . $keyword . "%")
+            //             ;
+            //     });
+            // })
+            // ->filter(function (Builder $query) {
+            //     $this->applyFilters($query, request());
+            // }, true);
+
+            
+            
+            // ->addColumn('actions', function (Message $message) {
+            //     return [
+            //         'update' => true,
+            //         'delete' => true,
+            //     ];
+            // })
     }
 
     protected function applyFilters(Builder $query, Request $request)
@@ -126,17 +147,16 @@ class AdminBaseService
     public function search($request)
     {
         $keywords = prepare_keyword($request['q'] ?? '');
-
         return $this->model
-            ->select(['id', 'title'])
+            ->select(['id', 'name'])
             ->when(count($keywords), function ($query) use ($keywords) {
                 foreach ($keywords as $keyword) {
                     $query->where(function ($query) use ($keyword) {
-                        $query->where('title', 'like', "%$keyword%");
+                        $query->where('name', 'like', "%$keyword%");
                     });
                 }
             })
-            ->orderBy('title')
+            ->orderBy('name')
             ->paginate(15);
     }
 

@@ -63,11 +63,11 @@ export default [
       },
       {
         path: 'categories', 
-        name: 'categories', 
-        // component: page('app/admin/index.vue'),
+        name: 'admin.categories',
+        component: page('app/admin/categories/index.vue'),
         children: [
           {
-            path: '/categories',
+            path: '/admin/categories',
             name: 'admin.categories.index', 
             component: page('app/admin/categories/index.vue'),
           },
