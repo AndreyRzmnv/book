@@ -22,7 +22,7 @@ class AdminBaseService
     /**
      * Возвращает список всех колонок для DataTable
      */
-    public function tableColumns()
+    protected function tableColumns()
     {
         return [ 'id', 'name', 'actions' ];
     }
@@ -112,7 +112,6 @@ class AdminBaseService
      */
     public function update($request)
     {
-        
         return $this->model->update($request);
     }
 
