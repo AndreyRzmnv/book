@@ -20,6 +20,7 @@ class SubjectService extends AdminBaseService
             ->select(
                 'id',
                 'name',
+                'color',
             );
     }
 
@@ -51,5 +52,12 @@ class SubjectService extends AdminBaseService
             //     ];
             // })
         ;
+    }
+    /**
+     * Возвращает список всех колонок для DataTable
+     */
+    protected function tableColumns()
+    {
+        return [ 'id', 'name', 'color', 'actions' ];
     }
 }

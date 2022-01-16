@@ -13,7 +13,14 @@
           :error-messages="form.errors.get('title')"
           required
         />
+        <v-color-picker
+          v-model="form.color"
+          dot-size="19"
+          mode="hexa"
+          swatches-max-height="250"
+        ></v-color-picker>
       </v-card-text>
+      
       <v-card-actions>
         <v-spacer />
         <cancel-button @cancel="$emit('cancel')" />
@@ -40,7 +47,8 @@ export default {
   data () {
     return {
       form: new Form({
-        name: ''
+        name: '',
+        color: '',
       }),
     }
   },

@@ -38,6 +38,7 @@
             "dataTable": {
                 "headers": {
                     "name": "Название",
+                    "color": "Цвет",
                     "actions": "Действия"
                 }
             },

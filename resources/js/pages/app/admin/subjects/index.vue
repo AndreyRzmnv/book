@@ -13,6 +13,16 @@
           :search="search"
           :filters="filters"
         >
+          <template #item.color="{ item }">
+            <v-btn
+                x-small
+                :color="item.color"
+                dark
+            >
+              {{item.name}}
+            </v-btn>
+
+          </template>
           <template #item.actions="{ item }">
             <div
               v-if="item.actions"
@@ -29,6 +39,7 @@
               />
             </div>
           </template>
+          <template></template>
         </data-table>
       </v-card-text>
       <v-dialog v-model="showForm" max-width="400">
@@ -83,6 +94,7 @@ export default {
       return [
         { text: 'ID', value: 'id', width: '1%'},
         { text: this.$t('resources.subjects.dataTable.headers.name'), value: 'name' },
+        { text: this.$t('resources.subjects.dataTable.headers.color'), value: 'color' },
         { text: this.$t('resources.subjects.dataTable.headers.actions'), value: 'actions', width: '1%'},
       ]
     },

@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends BaseModel
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'color'];
 }
