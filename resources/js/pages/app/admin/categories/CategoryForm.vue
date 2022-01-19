@@ -74,14 +74,13 @@ export default {
   methods: {
     async submit () {
       this.form.subject_id = this.form.subject.id;
-      console.log(this.form);
-      // if (this.model) {
-      //   await this.form.put(this.$api.category.url.update(this.model.id))
-      // } else {
-      //   await this.form.post(this.$api.subject.url.store())
-      // }
-      // this.$toastr.s(this.$t('saved'))
-      // this.$emit('success')
+      if (this.model) {
+        await this.form.put(this.$api.category.url.update(this.model.id))
+      } else {
+        await this.form.post(this.$api.category.url.store())
+      }
+      this.$toastr.s(this.$t('saved'))
+      this.$emit('success')
     }
   }
 }
