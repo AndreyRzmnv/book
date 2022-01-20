@@ -10,13 +10,13 @@
           :label="$t('resources.subjects.fields.name') + ' *'"
           name="title"
           type="text"
-          :error-messages="form.errors.get('title')"
+          :error-messages="form.errors.get('name')"
           required
         />
         <api-autocomplete
           v-model="form.subject"
           :url="$api.subject.url.search()"
-          :label="$t('resources.categories.fields.subject')"
+          :label="$t('resources.categories.fields.subject') + ' *'"
           item-text="name"
           :error-messages="form.errors.get('subject_id')"
           dense
@@ -61,8 +61,8 @@ export default {
   computed: {
     title: function () {
       return this.model
-        ? this.$t('resources.subjects.titles.edit')
-        : this.$t('resources.subjects.titles.create')
+        ? this.$t('resources.categories.titles.edit')
+        : this.$t('resources.categories.titles.create')
     }
   },
   created () {
@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     async submit () {
-      this.form.subject_id = this.form.subject.id;
+      this.form.subject_id = this.form.subject?.id;
       if (this.model) {
         await this.form.put(this.$api.category.url.update(this.model.id))
       } else {

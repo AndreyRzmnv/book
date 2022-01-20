@@ -3,7 +3,7 @@
 namespace App\Models\Subcategory;
 
 use App\Models\BaseModel;
-use App\Models\Categories\Category;
+use App\Models\Category\Category;
 
 class Subcategory extends BaseModel
 {
