@@ -85,26 +85,27 @@ export default [
       },
       {
         path: 'subcategories', 
-        name: 'subcategories', 
-        // component: page('app/admin/index.vue'),
+        name: 'admin.subcategories',
+        component: page('app/admin/subcategories/index.vue'),
         children: [
           {
-            path: '/subcategories',
+            path: '/admin/subcategories',
             name: 'admin.subcategories.index', 
-            component: page('app/subcategories/index.vue'),
+            component: page('app/admin/subcategories/index.vue'),
           },
           {
             path: 'create', 
             name: 'admin.subcategories.create', 
-            component: page('app/subcategories/create.vue'),
+            component: page('app/admin/subcategories/create.vue'),
           },
           {
             path: 'edit', 
             name: 'admin.subcategories.edit', 
-            component: page('app/subcategories/edit.vue'),
+            component: page('app/admin/subcategories/edit.vue'),
           },
         ]
-      }
+      },
+      
     ]
   },
 

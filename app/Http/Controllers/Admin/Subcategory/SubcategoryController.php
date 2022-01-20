@@ -1,31 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Subcategory;
+namespace App\Http\Controllers\Admin\Subcategory;
 
-use App\Http\Controllers\Controller;
-use App\Models\Subcategories\Subcategory;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\AdminBaseController;
+use App\Http\Requests\Subcategory\SubcategoryStoreRequest;
+use App\Http\Requests\Subcategory\SubcategoryUpdateRequest;
+use App\Models\Subcategory\Subcategory;
+use App\Policies\SubcategoryPolicy;
+use App\Services\Admin\Subcategory\SubcategoryService;
 
-class SubcategoryController extends Controller
+class SubcategoryController extends AdminBaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct(SubcategoryService $service)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $this->authorizeResource(SubcategoryPolicy::class);
+        parent::__construct($service);
     }
 
     /**
@@ -34,31 +23,9 @@ class SubcategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubcategoryStoreRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Subcategories\Subcategory  $subcategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Subcategory $subcategory)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Subcategories\Subcategory  $subcategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Subcategory $subcategory)
-    {
-        //
+        return $this->baseStore($request->validated());
     }
 
     /**
@@ -68,9 +35,9 @@ class SubcategoryController extends Controller
      * @param  \App\Models\Subcategories\Subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subcategory $subcategory)
+    public function update(SubcategoryUpdateRequest $request, Subcategory $subcategory)
     {
-        //
+        return $this->baseUpdate($request->validated(), $subcategory);
     }
 
     /**
@@ -81,6 +48,6 @@ class SubcategoryController extends Controller
      */
     public function destroy(Subcategory $subcategory)
     {
-        //
+        return $this->baseDestroy($subcategory);
     }
 }

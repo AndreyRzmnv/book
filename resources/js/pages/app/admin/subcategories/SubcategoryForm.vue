@@ -7,18 +7,22 @@
       <v-card-text>
         <v-text-field
           v-model="form.name"
-          :label="$t('resources.subjects.fields.name') + ' *'"
+          :label="$t('resources.subcategories.fields.name') + ' *'"
           name="title"
           type="text"
           :error-messages="form.errors.get('name')"
           required
         />
-        <v-color-picker
-          v-model="form.color"
-          dot-size="19"
-          mode="hexa"
-          swatches-max-height="250"
-        ></v-color-picker>
+        <api-autocomplete
+          v-model="form.category"
+          :url="$api.category.url.search()"
+          :label="$t('resources.subcategories.fields.category') + ' *'"
+          item-text="name"
+          :error-messages="form.errors.get('category_id')"
+          dense
+          lazy-load
+        />
+
       </v-card-text>
       
       <v-card-actions>
@@ -32,12 +36,14 @@
 
 <script>
 import Form from 'vform'
+import ApiAutocomplete from '../../../../components/Admin/ApiAutocomplete'
 import SubmitButton from '../../../../components/Admin/SubmitButton'
 import CancelButton from '../../../../components/Admin/CancelButton'
 
 export default {
-  name: 'SubjectForm',
+  name: 'SubcategoryForm',
   components: {
+    ApiAutocomplete,
     SubmitButton,
     CancelButton
   },
@@ -48,15 +54,15 @@ export default {
     return {
       form: new Form({
         name: '',
-        color: '',
+        category: null,
       }),
     }
   },
   computed: {
     title: function () {
       return this.model
-        ? this.$t('resources.subjects.titles.edit')
-        : this.$t('resources.subjects.titles.create')
+        ? this.$t('resources.subcategories.titles.edit')
+        : this.$t('resources.subcategories.titles.create')
     }
   },
   created () {
@@ -67,10 +73,11 @@ export default {
   },
   methods: {
     async submit () {
+      this.form.category_id = this.form.category?.id;
       if (this.model) {
-        await this.form.put(this.$api.subject.url.update(this.model.id))
+        await this.form.put(this.$api.subcategory.url.update(this.model.id))
       } else {
-        await this.form.post(this.$api.subject.url.store())
+        await this.form.post(this.$api.subcategory.url.store())
       }
       this.$toastr.s(this.$t('saved'))
       this.$emit('success')
