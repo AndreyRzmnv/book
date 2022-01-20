@@ -47,11 +47,11 @@
         
     }
 </script>
-<style lang="scss">
-    // header{
-    //     // width: 100%;
-    //     position: fixed;
-    //     background-color: #fff;
-    //     z-index: 1;
-    // }
+<style scoped lang="scss">
+    header{
+        width: 100%;
+        position: fixed;
+        background-color: #fff;
+        z-index: 1;
+    }
 </style>
