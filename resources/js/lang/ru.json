@@ -10,12 +10,15 @@
     "error": "Ошибка",
     "name": "Название",
     "save": "Сохранить",
+    "saved": "Сохранено",
     "add": "Добавить",
     "profile": "Профиль",
+    "loading": "Загрузка",
     "admin": {
       "dashboard": "Dashboard"
     },
     "menu": {
+      "examples": "Примеры",
       "subjects": "Темы",
       "categories": "Категории",
       "subcategories": "Подкатегории"
@@ -23,6 +26,11 @@
     "routes": {
       "admin": {
         "dashboard": "Dashboard",
+        "examples": {
+          "index": "Примеры",
+          "create": "Создание примера",
+          "edit": "Редактирование примера"
+        },
         "subjects": {
           "index": "Темы"
         },
@@ -69,6 +77,21 @@
             "create": "Создание подкатегории",
             "edit": "Редактирование подкатегории",
             "delete": "Удалить подкатегорию?"
+          }
+        },
+        "examples": {
+          "fields": {
+            "name": "Название",
+            "description": "Описание",
+            "subject": "Тема",
+            "category": "Категория",
+            "subcategory": "Подкатегория",
+            "actions": "Действия"
+          },
+          "titles": {
+            "create": "Создание примера",
+            "edit": "Редактирование примера",
+            "delete": "Удалить пример?"
           }
         }
     },

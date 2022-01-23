@@ -42,66 +42,88 @@ export default [
       {
         path: 'subjects', 
         name: 'admin.subjects',
-        component: page('app/admin/subjects/index.vue'),
+        component: page('app/admin/index.vue'),
         children: [
           {
             path: '/admin/subjects',
             name: 'admin.subjects.index', 
             component: page('app/admin/subjects/index.vue'),
           },
-          {
-            path: 'create', 
-            name: 'admin.subjects.create', 
-            component: page('app/admin/subjects/create.vue'),
-          },
-          {
-            path: 'edit', 
-            name: 'admin.subjects.edit', 
-            component: page('app/admin/subjects/edit.vue'),
-          },
+          // {
+          //   path: 'create', 
+          //   name: 'admin.subjects.create', 
+          //   component: page('app/admin/subjects/create.vue'),
+          // },
+          // {
+          //   path: 'edit', 
+          //   name: 'admin.subjects.edit', 
+          //   component: page('app/admin/subjects/edit.vue'),
+          // },
         ]
       },
       {
         path: 'categories', 
         name: 'admin.categories',
-        component: page('app/admin/categories/index.vue'),
+        component: page('app/admin/index.vue'),
         children: [
           {
             path: '/admin/categories',
             name: 'admin.categories.index', 
             component: page('app/admin/categories/index.vue'),
           },
-          {
-            path: 'create', 
-            name: 'admin.categories.create', 
-            component: page('app/admin/categories/create.vue'),
-          },
-          {
-            path: 'edit', 
-            name: 'admin.categories.edit', 
-            component: page('app/admin/categories/edit.vue'),
-          },
+          // {
+          //   path: 'create', 
+          //   name: 'admin.categories.create', 
+          //   component: page('app/admin/categories/create.vue'),
+          // },
+          // {
+          //   path: 'edit', 
+          //   name: 'admin.categories.edit', 
+          //   component: page('app/admin/categories/edit.vue'),
+          // },
         ]
       },
       {
         path: 'subcategories', 
         name: 'admin.subcategories',
-        component: page('app/admin/subcategories/index.vue'),
+        component: page('app/admin/index.vue'),
         children: [
           {
             path: '/admin/subcategories',
             name: 'admin.subcategories.index', 
             component: page('app/admin/subcategories/index.vue'),
           },
+          // {
+          //   path: 'create', 
+          //   name: 'admin.subcategories.create', 
+          //   component: page('app/admin/subcategories/create.vue'),
+          // },
+          // {
+          //   path: 'edit', 
+          //   name: 'admin.subcategories.edit', 
+          //   component: page('app/admin/subcategories/edit.vue'),
+          // },
+        ]
+      },
+      {
+        path: 'examples', 
+        name: 'admin.examples',
+        component: page('app/admin/index.vue'),
+        children: [
           {
-            path: 'create', 
-            name: 'admin.subcategories.create', 
-            component: page('app/admin/subcategories/create.vue'),
+            path: '/admin/examples',
+            name: 'admin.examples.index', 
+            component: page('app/admin/examples/index.vue'),
           },
           {
-            path: 'edit', 
-            name: 'admin.subcategories.edit', 
-            component: page('app/admin/subcategories/edit.vue'),
+            path: 'create', 
+            name: 'admin.examples.create', 
+            component: page('app/admin/examples/create.vue'),
+          },
+          {
+            path: ':id/edit', 
+            name: 'admin.examples.edit', 
+            component: page('app/admin/examples/edit.vue'),
           },
         ]
       },

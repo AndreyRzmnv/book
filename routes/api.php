@@ -13,6 +13,7 @@ use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Admin\Subject\SubjectController;
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Example\ExampleController;
 use App\Http\Controllers\Admin\Subcategory\SubcategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,9 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'admin'], function () {
     // Категории
     Route::apiResource('subcategories', SubcategoryController::class)->except(['show']);
     Route::get('subcategories/search', [SubcategoryController::class, 'search']);
+    // Примеры
+    Route::resource('examples', ExampleController::class);
+    Route::get('examples/search', [ExampleController::class, 'search']);
 });
 Route::group(['middleware' => 'guest:api', 'prefix' => 'admin'], function () {
     Route::post('login', [LoginController::class, 'login']);
