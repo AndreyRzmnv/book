@@ -21,7 +21,7 @@
       <v-card-text>
         <data-table
           ref="datatable"
-          :url="url"
+          :url="$api.category.url.index()"
           :headers="headers"
           :search="search"
           :filters="filters"
@@ -48,7 +48,7 @@
               <delete-button
                 :url="$api.category.url.delete(item.id)"
                 :title="$t('resources.categories.titles.delete')"
-                @deletingSuccess="deletingSuccess"
+                @success="successDeleting"
               />
             </div>
           </template>
@@ -61,7 +61,7 @@
           :key="formKey"
           :model="model"
           @cancel="closeForm"
-          @success="formSuccess"
+          @success="successForm"
         />
       </v-dialog>
 
@@ -84,7 +84,6 @@ export default {
   },
   data() {
     return {
-      url: '',
       search: '',
       showForm: false,
       formKey: 1,
@@ -114,7 +113,7 @@ export default {
     
   },
   created() {
-    this.url = this.$api.category.url.index();
+    
   },
   methods: {
     create(){
@@ -130,11 +129,11 @@ export default {
     closeForm(){
       this.showForm = false;
     },
-    formSuccess(){
+    successForm(){
       this.closeForm();
       this.$refs.datatable.getData();
     },
-    deletingSuccess(data){
+    successDeleting(){
       this.$refs.datatable.getData();
     }
   },
