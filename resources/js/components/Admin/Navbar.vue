@@ -1,17 +1,5 @@
 <template>
   <div>
-    <v-app-bar color="white" dense>
-      <template>
-        <v-app-bar-nav-icon @click="drawer = !drawer" />
-        <v-spacer />
-        <user-menu />
-      </template>
-    </v-app-bar>
-
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-    >
 		<v-list-item>
 			<v-list-item-content>
 				<v-list-item-title class="title">
@@ -140,7 +128,7 @@
           </div>
         </div>
       </v-list>
-    </v-navigation-drawer>
+    
   </div>
 </template>
 
@@ -150,6 +138,7 @@ import LocaleDropdown from "../LocaleDropdown";
 import UserMenu from "./UserMenu";
 
 export default {
+  name: 'Navbar',
   components: {
     LocaleDropdown,
     UserMenu,
@@ -162,6 +151,12 @@ export default {
   computed: {
     items() {
       return [
+        {
+            title: this.$t("menu.examples"),
+            icon: "mdi-apps",
+            to: { name: "admin.examples.index" },
+            visible: true,
+        },
         {
             title: this.$t("menu.subjects"),
             icon: "mdi-bookmark-multiple",

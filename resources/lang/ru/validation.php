@@ -168,5 +168,7 @@ return [
         'subject_id' => 'Тема',
         'category_id' => 'Категория',
         'subcategory_id' => 'Подкатегория',
+        'blocks.*.name' => 'Название',
+        'blocks.*.description' => 'Описание',
     ],
 ];

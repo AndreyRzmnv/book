@@ -21,7 +21,7 @@
       <v-card-text>
         <data-table
           ref="datatable"
-          :url="$api.category.url.index()"
+          :url="$api.example.url.index()"
           :headers="headers"
           :search="search"
           :filters="filters"
@@ -36,8 +36,8 @@
               />
               
               <delete-button
-                :url="$api.category.url.delete(item.id)"
-                :title="$t('resources.categories.titles.delete')"
+                :url="$api.example.url.delete(item.id)"
+                :title="$t('resources.examples.titles.delete')"
                 @success="successDeleting"
               />
             </div>
@@ -46,7 +46,7 @@
         </data-table>
       </v-card-text>
       <v-dialog v-model="showForm" max-width="400">
-        <category-form
+        <example-form
           :v-if="showForm"
           :key="formKey"
           :model="model"
@@ -63,14 +63,14 @@ import DataTable from '../../../../components/Admin/DataTable/DataTable'
 import EditButton from '../../../../components/Admin/DataTable/EditButton'
 import DeleteButton from '../../../../components/Admin/DataTable/DeleteButton'
 import CreateButton from '../../../../components/Admin/CreateButton'
-import CategoryForm from './CategoryForm'
+import ExampleForm from './ExampleForm'
 export default {
   components: {
     DataTable,
     EditButton,
     DeleteButton,
     CreateButton,
-    CategoryForm,
+    ExampleForm,
   },
   data() {
     return {
@@ -95,9 +95,11 @@ export default {
     headers () {
       return [
         { text: 'ID', value: 'id'},
-        { text: this.$t('resources.categories.fields.name'), value: 'name' },
-        { text: this.$t('resources.categories.fields.subject'), value: 'subject.name' },
-        { text: this.$t('resources.categories.fields.actions'), value: 'actions', width: '1%'},
+        { text: this.$t('resources.examples.fields.name'), value: 'name' },
+        { text: this.$t('resources.examples.fields.subject'), value: 'subcategory.category.subject.name' },
+        { text: this.$t('resources.examples.fields.category'), value: 'subcategory.category.name' },
+        { text: this.$t('resources.examples.fields.subcategory'), value: 'subcategory.name' },
+        { text: this.$t('resources.examples.fields.actions'), value: 'actions', width: '1%'},
       ]
     },
     
@@ -107,14 +109,10 @@ export default {
   },
   methods: {
     create(){
-      this.model = null;
-      this.formKey++;
-      this.showForm = true;
+      this.$router.push({ name: 'admin.examples.create' })
     },
     edit(item){
-      this.model = item;
-      this.formKey++;
-      this.showForm = true;
+      this.$router.push({ name: 'admin.examples.edit', params: {id: item.id} })
     },
     closeForm(){
       this.showForm = false;

@@ -26,21 +26,12 @@
           :search="search"
           :filters="filters"
         >
-          <template #item.color="{ item }">
-            <v-btn
-                x-small
-                :color="item.color"
-                dark
-            >
-              {{item.name}}
-            </v-btn>
-
-          </template>
           <template #item.actions="{ item }">
             <div
               v-if="item.actions"
               class="d-inline-flex"
             >
+              
               <edit-button
                 @showDialog="edit(item)"
               />
