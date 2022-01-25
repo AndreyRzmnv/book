@@ -1,6 +1,7 @@
 <?php
 namespace App\Services\Admin\Subcategory;
 
+use App\Http\Resources\Subcategory\SubcategorySearchResource;
 use App\Models\Subcategory\Subcategory;
 use App\Services\Admin\AdminBaseService;
 use Yajra\DataTables\Facades\DataTables;
@@ -43,5 +44,22 @@ class SubcategoryService extends AdminBaseService
     protected function tableColumns()
     {
         return [ 'id', 'name', 'category.id', 'category.name', 'actions' ];
+    }
+    public function search($request)
+    {
+        $keywords = prepare_keyword($request['q'] ?? '');
+        $query = $this->model
+            ->select(['id', 'name', 'category_id'])
+            ->with(['category:id,name,subject_id', 'category.subject:id,name'])
+            ->when(count($keywords), function ($query) use ($keywords) {
+                foreach ($keywords as $keyword) {
+                    $query->where(function ($query) use ($keyword) {
+                        $query->where('name', 'like', "%$keyword%");
+                    });
+                }
+            })
+            ->orderBy('name')
+            ->paginate(15);
+        return SubcategorySearchResource::collection($query);
     }
 }

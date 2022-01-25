@@ -18,7 +18,9 @@
           :error-messages="form.errors.get('subcategory_id')"
           dense
           lazy-load
-        />
+        >
+          
+        </api-autocomplete>
         <p class="font-weight-light">
           Блоки
           <v-btn
