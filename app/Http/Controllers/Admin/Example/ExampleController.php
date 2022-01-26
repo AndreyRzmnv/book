@@ -58,7 +58,7 @@ class ExampleController extends AdminBaseController
      */
     public function edit(Example $example)
     {
-        //
+        return $this->baseEdit($example);
     }
 
     /**

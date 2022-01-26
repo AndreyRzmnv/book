@@ -63,10 +63,11 @@ class AdminBaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function edit($id)
-    // {
-    //     //
-    // }
+    public function baseEdit($model)
+    {
+        $this->service->model = $model;
+        return $this->service->edit();
+    }
 
     /**
      * Update the specified resource in storage.
