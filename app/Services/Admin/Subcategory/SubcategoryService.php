@@ -25,7 +25,7 @@ class SubcategoryService extends AdminBaseService
                 'subcategories.id',
                 'subcategories.name',
                 'subcategories.category_id',
-            )->with(['category:id,name']);
+            )->with(['category.subject:id,name']);
     }
 
     /**
@@ -43,8 +43,12 @@ class SubcategoryService extends AdminBaseService
      */
     protected function tableColumns()
     {
-        return [ 'id', 'name', 'category.id', 'category.name', 'actions' ];
+        return [ 'id', 'name', 'category.id', 'category.name', 'category.subject.id', 'category.subject.name', 'actions' ];
     }
+
+    /**
+     * Поиск элементов для селекта
+     */
     public function search($request)
     {
         $keywords = prepare_keyword($request['q'] ?? '');
@@ -55,7 +59,18 @@ class SubcategoryService extends AdminBaseService
                 foreach ($keywords as $keyword) {
                     $query->where(function ($query) use ($keyword) {
                         $query->where('name', 'like', "%$keyword%");
-                    });
+                    })
+                    ->orWhere(function ($query) use ($keyword) {
+                        $query->whereHas('category', function ($query) use ($keyword){
+                            $query->where('name', 'like', "%$keyword%");
+                        });
+                    })
+                    ->orWhere(function ($query) use ($keyword) {
+                        $query->whereHas('category.subject', function ($query) use ($keyword){
+                            $query->where('name', 'like', "%$keyword%");
+                        });
+                    })
+                    ;
                 }
             })
             ->orderBy('name')

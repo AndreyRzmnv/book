@@ -102,7 +102,6 @@ export default {
       form: new Form({
         name: '',
         subcategory: null,
-        subcategory_id: '',
         blocks: [],
       }),
     }
@@ -110,12 +109,39 @@ export default {
   computed: {
   },
   created () {
-    if (this.model) {
-      this.form.fill(this.model)
+    if (this.modelId) {
+      this.$api.example.edit(this.modelId).then(({ data }) => this.init(data));
+    } else {
+      this.$api.example.create().then(({ data }) => this.init(data));
     }
+
+    // if (this.model) {
+    //   this.form.fill(this.model)
+    // }
 
   },
   methods: {
+    async init(data) {
+      if (this.modelId) {
+        this.form.fill(data.model)
+      }
+      // this.marketers = data.marketers;
+      // this.legal_forms = data.legal_forms;
+      // this.manufacturer_contracts = data.manufacturer_contracts;
+      // this.inclusion_new_chains = data.inclusion_new_chains;
+      // this.period_report_chains = data.period_report_chains;
+      // this.working_pharmacies = data.working_pharmacies;
+      // this.include_organics = data.include_organics;
+      // this.manufacturer_statuses = data.manufacturer_statuses;
+      // if (this.modelId) {
+
+      //   this.manufacturer = data.manufacturer;
+      //   this.form.fill(this.manufacturer);
+      // }
+      // this.form.delete_contact_persons = [];
+      // this.form.delete_contact_person_phones = [];
+      // this.form.delete_contact_person_emails = [];
+    },
     addBlock(){
       this.form.blocks.push({ name: '', description: ''});
     },

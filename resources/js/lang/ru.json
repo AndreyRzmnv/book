@@ -71,6 +71,7 @@
           "fields": {
             "name": "Название",
             "category": "Категория",
+            "subject": "Тема",
             "actions": "Действия"
           },
           "titles": {

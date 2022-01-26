@@ -98,6 +98,7 @@ export default {
         { text: 'ID', value: 'id'},
         { text: this.$t('resources.subcategories.fields.name'), value: 'name' },
         { text: this.$t('resources.subcategories.fields.category'), value: 'category.name' },
+        { text: this.$t('resources.subcategories.fields.subject'), value: 'category.subject.name' },
         { text: this.$t('resources.subcategories.fields.actions'), value: 'actions', width: '1%'},
       ]
     },

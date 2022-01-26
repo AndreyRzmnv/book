@@ -16,4 +16,8 @@ class Example extends BaseModel
     {
         return $this->belongsTo(Subcategory::class);
     }
+    public function exampleBlocks()
+    {
+        return $this->hasMany(ExampleBlock::class);
+    }
 }
