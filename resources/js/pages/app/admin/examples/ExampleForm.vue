@@ -38,7 +38,6 @@
           <div
             v-for="(item, index) in form.blocks"
             :key="`block-${index}`"
-            
           >
           <v-text-field
               v-model="item.name"
@@ -52,8 +51,7 @@
                 <v-btn
                   icon
                   color="error"
-                  @click="form.blocks.splice(index, 1)"
-                  
+                  @click="form.blocks.splice(index, 1); form.deleting_blocks.push(item.id)"
                 >
                   <v-icon>
                     mdi-minus
@@ -95,7 +93,7 @@ export default {
     CancelButton
   },
   props: {
-    modelId: { type: String, default: null }
+    modelId: { type: [String, Number], default: null }
   },
   data () {
     return {
@@ -103,6 +101,7 @@ export default {
         name: '',
         subcategory: null,
         blocks: [],
+        deleting_blocks: [],
       }),
     }
   },
@@ -114,44 +113,24 @@ export default {
     } else {
       this.$api.example.create().then(({ data }) => this.init(data));
     }
-
-    // if (this.model) {
-    //   this.form.fill(this.model)
-    // }
-
   },
   methods: {
     async init(data) {
-      if (this.modelId) {
-        this.form.fill(data.model)
-      }
-      // this.marketers = data.marketers;
-      // this.legal_forms = data.legal_forms;
-      // this.manufacturer_contracts = data.manufacturer_contracts;
-      // this.inclusion_new_chains = data.inclusion_new_chains;
-      // this.period_report_chains = data.period_report_chains;
-      // this.working_pharmacies = data.working_pharmacies;
-      // this.include_organics = data.include_organics;
-      // this.manufacturer_statuses = data.manufacturer_statuses;
-      // if (this.modelId) {
-
-      //   this.manufacturer = data.manufacturer;
-      //   this.form.fill(this.manufacturer);
-      // }
-      // this.form.delete_contact_persons = [];
-      // this.form.delete_contact_person_phones = [];
-      // this.form.delete_contact_person_emails = [];
+      if (this.modelId) 
+        this.form.fill(data.model);
+      this.form.deleting_blocks = [];
     },
     addBlock(){
       this.form.blocks.push({ name: '', description: ''});
     },
     async submit () {
       this.form.subcategory_id = this.form.subcategory?.id;
-      if (this.model) {
-        await this.form.put(this.$api.example.url.update(this.model.id))
+      if (this.modelId) {
+        await this.form.put(this.$api.example.url.update(this.modelId))
       } else {
         await this.form.post(this.$api.example.url.store())
       }
+      this.$router.push({name: 'admin.examples.index'})
       this.$toastr.s(this.$t('saved'))
       this.$emit('success')
     }
