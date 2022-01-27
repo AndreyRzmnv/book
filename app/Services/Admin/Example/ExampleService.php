@@ -56,14 +56,51 @@ class ExampleService extends AdminBaseService
         ];
     }
 
+    /**
+     * Создание записи в БД
+     */
     public function store($request)
     {
-        $this->model = $this->model->create($request);
-        $this->model->exampleBlocks()->createMany($request['blocks']);
+        $this->model = $this->model
+            ->create($request);
+        $this->model
+            ->exampleBlocks()
+            ->createMany($request['blocks']);
         return $this->model;
     }
 
-    
+    /**
+     * Обновление записи в БД
+     */
+    public function update($request)
+    {
+        $this->model->update($request);
+        if(isset($request['blocks']) && !empty($request['blocks'])){
+            foreach ($request['blocks'] as $block) {
+                if(isset($block['id'])){
+                    $this->model
+                        ->exampleBlocks()
+                        ->find($block['id'])
+                        ->update($block);
+                }else{
+                    $this->model
+                        ->exampleBlocks()
+                        ->create($block);
+                }
+            }
+        }
+        if(isset($request['deleting_blocks'])){
+            $this->model
+                ->exampleBlocks()
+                ->whereIn('id', $request['deleting_blocks'])
+                ->delete();
+        }
+        return $this->model;
+    }
+
+    /**
+     * Данные для редактирования элемента
+     */
     public function edit()
     {
         return [
