@@ -1,6 +1,6 @@
 <template>
     <v-card>
-      <v-card-title>
+      <v-card-text>
         <v-row>
           <v-col cols="auto">
             <create-button
@@ -17,7 +17,19 @@
             />
           </v-col>
         </v-row>
-      </v-card-title>
+        <v-row>
+          <v-col cols="12" sm="6" md="4" xl="3">
+            <api-autocomplete
+              v-model="filters.subcategory"
+              :url="$api.subcategory.url.search()"
+              :label="$t('resources.examples.filters.subcategory')"
+              
+              dense
+              lazy-load
+            />
+          </v-col>
+        </v-row>
+      </v-card-text>
       <v-card-text>
         <data-table
           ref="datatable"
@@ -59,6 +71,7 @@
 </template>
 
 <script>
+import ApiAutocomplete from '../../../../components/Admin/ApiAutocomplete'
 import DataTable from '../../../../components/Admin/DataTable/DataTable'
 import EditButton from '../../../../components/Admin/DataTable/EditButton'
 import DeleteButton from '../../../../components/Admin/DataTable/DeleteButton'
@@ -66,6 +79,7 @@ import CreateButton from '../../../../components/Admin/CreateButton'
 import ExampleForm from './ExampleForm'
 export default {
   components: {
+    ApiAutocomplete,
     DataTable,
     EditButton,
     DeleteButton,
@@ -79,10 +93,10 @@ export default {
       formKey: 1,
       model: null,
       defaultFilters: {
-
+        subcategory: null,
       },
       filters: {
-        
+        subcategory: null,
       },
         
       
@@ -105,7 +119,9 @@ export default {
     
   },
   created() {
-    
+    if(this.$route.params.filters){
+      this.filters = this.$route.params.filters;
+    }
   },
   methods: {
     create(){

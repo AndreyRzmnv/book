@@ -1,6 +1,6 @@
 <template>
     <v-card>
-      <v-card-title>
+      <v-card-text>
         <v-row>
           <v-col cols="auto">
             <create-button
@@ -17,7 +17,19 @@
             />
           </v-col>
         </v-row>
-      </v-card-title>
+        <v-row>
+          <v-col cols="12" sm="6" md="4" xl="3">
+            <api-autocomplete
+              v-model="filters.category"
+              :url="$api.category.url.search()"
+              :label="$t('resources.subcategories.filters.category')"
+              
+              dense
+              lazy-load
+            />
+          </v-col>
+        </v-row>
+      </v-card-text>
       <v-card-text>
         <data-table
           ref="datatable"
@@ -31,14 +43,21 @@
               v-if="item.actions"
               class="d-inline-flex"
             >
-              
+              <v-btn
+                  icon
+                  color="blue"
+                  :to="{name: 'admin.examples.index', params: { filters: { subcategory: {id: item.id, name: item.name}}} }"
+                  dark
+              >
+                <v-icon>mdi-share</v-icon>
+              </v-btn>
               <edit-button
                 @showDialog="edit(item)"
               />
               
               <delete-button
                 :url="$api.subcategory.url.delete(item.id)"
-                :title="$t('resources.categories.titles.delete')"
+                :title="$t('resources.subcategories.titles.delete')"
                 @success="successDeleting"
               />
             </div>
@@ -60,6 +79,7 @@
 </template>
 
 <script>
+import ApiAutocomplete from '../../../../components/Admin/ApiAutocomplete'
 import DataTable from '../../../../components/Admin/DataTable/DataTable'
 import EditButton from '../../../../components/Admin/DataTable/EditButton'
 import DeleteButton from '../../../../components/Admin/DataTable/DeleteButton'
@@ -67,6 +87,7 @@ import CreateButton from '../../../../components/Admin/CreateButton'
 import SubcategoryForm from './SubcategoryForm'
 export default {
   components: {
+    ApiAutocomplete,
     DataTable,
     EditButton,
     DeleteButton,
@@ -80,10 +101,10 @@ export default {
       formKey: 1,
       model: null,
       defaultFilters: {
-
+        category: null,
       },
       filters: {
-        
+        category: null,
       },
         
       
@@ -105,7 +126,9 @@ export default {
     
   },
   created() {
-    
+    if(this.$route.params.filters){
+      this.filters = this.$route.params.filters;
+    }
   },
   methods: {
     create(){

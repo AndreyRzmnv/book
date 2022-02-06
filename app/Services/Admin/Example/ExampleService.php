@@ -4,6 +4,7 @@ namespace App\Services\Admin\Example;
 use App\Http\Resources\Example\ExampleFormResource;
 use App\Models\Example\Example;
 use App\Services\Admin\AdminBaseService;
+use Illuminate\Database\Eloquent\Builder;
 use Yajra\DataTables\Facades\DataTables;
 
 class ExampleService extends AdminBaseService
@@ -35,7 +36,21 @@ class ExampleService extends AdminBaseService
     {
         return DataTables::of($this->getModelForDataTable())
             ->only($this->tableColumns())
-            ->addColumn('actions', $this->actionColumnDT());
+            ->addColumn('actions', $this->actionColumnDT())
+            ->filter(function (Builder $query) {
+                $this->applyFilters($query, request()->all());
+            }, true);
+    }
+
+    /**
+     * Фильры для DT
+     */
+    protected function applyFilters(Builder $query, $request)
+    {
+        if( isset($request['subcategory']) && !empty($request['subcategory']) ){
+            $query->where('subcategory_id', $request['subcategory']['id']);
+        }
+        
     }
 
     /**

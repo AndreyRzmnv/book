@@ -56,6 +56,9 @@
           }
         },
         "categories": {
+          "filters": {
+            "subject": "Тема"
+          },
           "fields": {
             "name": "Название",
             "subject": "Тема",
@@ -68,6 +71,9 @@
           }
         },
         "subcategories": {
+          "filters": {
+            "category": "Категория"
+          },
           "fields": {
             "name": "Название",
             "category": "Категория",
@@ -81,6 +87,9 @@
           }
         },
         "examples": {
+          "filters": {
+            "subcategory": "Подкатегория"
+          },
           "fields": {
             "name": "Название",
             "description": "Описание",

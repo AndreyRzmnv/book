@@ -4,6 +4,7 @@ namespace App\Services\Admin\Subcategory;
 use App\Http\Resources\Subcategory\SubcategorySearchResource;
 use App\Models\Subcategory\Subcategory;
 use App\Services\Admin\AdminBaseService;
+use Illuminate\Database\Eloquent\Builder;
 use Yajra\DataTables\Facades\DataTables;
 
 class SubcategoryService extends AdminBaseService
@@ -35,7 +36,20 @@ class SubcategoryService extends AdminBaseService
     {
         return DataTables::of($this->getModelForDataTable())
             ->only($this->tableColumns())
-            ->addColumn('actions', $this->actionColumnDT());
+            ->addColumn('actions', $this->actionColumnDT())
+            ->filter(function (Builder $query) {
+                $this->applyFilters($query, request()->all());
+            }, true);
+    }
+
+    /**
+     * Фильры для DT
+     */
+    protected function applyFilters(Builder $query, $request)
+    {
+        if( isset($request['category']) && !empty($request['category']) ){
+            $query->where('category_id', $request['category']['id']);
+        }
     }
 
     /**

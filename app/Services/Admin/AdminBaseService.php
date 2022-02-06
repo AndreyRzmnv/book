@@ -52,7 +52,8 @@ class AdminBaseService
             ->addColumn('actions', $this->actionColumnDT())
             ->filter(function (Builder $query) {
                 $this->applyFilters($query, request());
-            }, true);
+            }, true)
+            ;
             // ->setTransformer(function (Subject $subject) {
             //     return SubjectResource::make($subject)->resolve();
             // })
@@ -77,7 +78,7 @@ class AdminBaseService
             // })
     }
 
-    protected function applyFilters(Builder $query, Request $request)
+    protected function applyFilters(Builder $query, $request)
     {
         
     }
