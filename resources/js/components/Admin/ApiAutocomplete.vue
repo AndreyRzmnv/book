@@ -83,10 +83,10 @@ export default {
   computed: {
     model: {
       get () {
-        return this.value
+        return this.value;
       },
       set (model) {
-        this.$emit('input', model)
+        this.$emit('input', model);
       }
     },
     displayedItems: function () {

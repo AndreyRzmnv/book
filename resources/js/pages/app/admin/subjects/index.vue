@@ -41,6 +41,15 @@
               v-if="item.actions"
               class="d-inline-flex"
             >
+              <v-btn
+                  icon
+                  color="blue"
+                  :to="{name: 'admin.categories.index', params: { filters: { subject: { id: item.id, name: item.name } } } }"
+                  dark
+              >
+                <v-icon>mdi-share</v-icon>
+                
+              </v-btn>
               <edit-button
                 @showDialog="edit(item)"
               />
@@ -113,7 +122,7 @@ export default {
     
   },
   created() {
-    
+
   },
   methods: {
     create(){
