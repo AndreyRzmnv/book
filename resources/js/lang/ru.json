@@ -21,7 +21,8 @@
       "examples": "Примеры",
       "subjects": "Темы",
       "categories": "Категории",
-      "subcategories": "Подкатегории"
+      "subcategories": "Подкатегории",
+      "chat": "Чат"
     },
     "routes": {
       "admin": {
@@ -39,6 +40,9 @@
         },
         "subcategories": {
           "index": "Подкатегории"
+        },
+        "chat": {
+          "index": "Чат"
         }
       }
     },
