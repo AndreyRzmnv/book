@@ -127,6 +127,11 @@ export default [
           },
         ]
       },
+      {
+        path: 'chat', 
+        name: 'admin.chat.index',
+        component: page('app/admin/chat/index.vue'),
+      },
       
     ]
   },

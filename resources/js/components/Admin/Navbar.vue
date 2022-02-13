@@ -174,6 +174,12 @@ export default {
             icon: "mdi-folder-multiple",
             to: { name: "admin.subcategories.index" },
             visible: true,
+        },
+        {
+            title: this.$t("menu.chat"),
+            icon: "mdi-comment",
+            to: { name: "admin.chat.index" },
+            visible: true,
         }
       ];
     },
