@@ -22,7 +22,7 @@
       "subjects": "Темы",
       "categories": "Категории",
       "subcategories": "Подкатегории",
-      "chat": "Чат"
+      "dialogs": "Диалоги"
     },
     "routes": {
       "admin": {
@@ -41,8 +41,9 @@
         "subcategories": {
           "index": "Подкатегории"
         },
-        "chat": {
-          "index": "Чат"
+        "dialogs": {
+          "index": "Диалоги",
+          "show": "Диалог"
         }
       }
     },

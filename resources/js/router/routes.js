@@ -128,10 +128,22 @@ export default [
         ]
       },
       {
-        path: 'chat', 
-        name: 'admin.chat.index',
-        component: page('app/admin/chat/index.vue'),
-      },
+        path: '/admin/dialogs', 
+        name: 'admin.dialogs',
+        component: page('app/admin/index.vue'),
+        children: [
+          {
+            path: '/admin/dialogs',
+            name: 'admin.dialogs.index', 
+            component: page('app/admin/dialogs/index.vue'),
+          },
+          {
+            path: ':id', 
+            name: 'admin.dialogs.show', 
+            component: page('app/admin/dialogs/show.vue'),
+          },
+        ]
+      }
       
     ]
   },

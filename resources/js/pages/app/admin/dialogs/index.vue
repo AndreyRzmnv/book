@@ -1,6 +1,12 @@
 <template>
     <v-card>
-      qwe
+      <v-card-text>
+        <v-btn
+          :to="{name: 'admin.dialogs.show', params: {id: 1}}"
+        >
+          Диалог 1
+        </v-btn>
+      </v-card-text>
 
     </v-card>
 </template>

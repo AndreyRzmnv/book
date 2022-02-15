@@ -176,9 +176,9 @@ export default {
             visible: true,
         },
         {
-            title: this.$t("menu.chat"),
+            title: this.$t("menu.dialogs"),
             icon: "mdi-comment",
-            to: { name: "admin.chat.index" },
+            to: { name: "admin.dialogs.index" },
             visible: true,
         }
       ];

@@ -13,6 +13,7 @@ use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Admin\Subject\SubjectController;
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Dialog\DialogController;
 use App\Http\Controllers\Admin\Example\ExampleController;
 use App\Http\Controllers\Admin\Subcategory\SubcategoryController;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,8 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'admin'], function () {
     // Примеры
     Route::resource('examples', ExampleController::class);
     Route::get('examples/search', [ExampleController::class, 'search']);
+    // Диалоги
+    Route::resource('dialogs', DialogController::class)->only(['show']);
 });
 Route::group(['middleware' => 'guest:api', 'prefix' => 'admin'], function () {
     Route::post('login', [LoginController::class, 'login']);
