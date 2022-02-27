@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dialog\DialogMessage;
+use App\Services\Admin\Dialog\DialogMessageService;
 use Illuminate\Http\Request;
 
 class DialogMessageController extends Controller
 {
+    public function __construct(DialogMessageService $service)
+    {
+        // $this->authorizeResource(CategoryPolicy::class);
+        parent::__construct($service);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +53,7 @@ class DialogMessageController extends Controller
      */
     public function show(DialogMessage $dialogMessage)
     {
-        //
+        return $this->service->show($dialogMessage);
     }
 
     /**

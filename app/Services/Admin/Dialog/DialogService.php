@@ -17,6 +17,8 @@ class DialogService extends AdminBaseService
 
     public function show($dialog)
     {
-        return MessagesResource::collection($dialog->messages->load('user'));
+        return MessagesResource::collection($dialog->messages()->latest()->paginate(10)->load('user'));
     }
+
+    
 }

@@ -4,6 +4,7 @@ import CategoryApi from './CategoryApi'
 import SubcategoryApi from './SubcategoryApi'
 import ExampleApi from './ExampleApi'
 import DialogApi from './DialogApi'
+import DialogMessageApi from './DialogMessageApi'
 
 
 
@@ -15,6 +16,7 @@ export const $api = {
   subcategory: new SubcategoryApi(),
   example: new ExampleApi(),
   dialog: new DialogApi(),
+  dialogMessage: new DialogMessageApi(),
 
 
   }

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             // DialogsTableSeeder::class
-            // DialogMessagesTableSeeder::class
+            DialogMessagesTableSeeder::class
             // RolesTableSeeder::class,
             // UsersTableSeeder::class,
         ]);

@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Dialog\DialogController;
 use App\Http\Controllers\Admin\Example\ExampleController;
 use App\Http\Controllers\Admin\Subcategory\SubcategoryController;
+use App\Http\Controllers\DialogMessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,7 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'admin'], function () {
     Route::get('examples/search', [ExampleController::class, 'search']);
     // Диалоги
     Route::resource('dialogs', DialogController::class)->only(['show']);
+    Route::resource('dialog-messages', DialogMessageController::class)->only(['show']);
 });
 Route::group(['middleware' => 'guest:api', 'prefix' => 'admin'], function () {
     Route::post('login', [LoginController::class, 'login']);

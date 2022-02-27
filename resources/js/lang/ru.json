@@ -48,67 +48,75 @@
       }
     },
     "resources": {
-        "subjects": {
-          "fields": {
-            "name": "Название",
-            "color": "Цвет",
-            "actions": "Действия"
-          },
-          "titles": {
-            "create": "Создание темы",
-            "edit": "Редактирование темы",
-            "delete": "Удалить тему?"
-          }
+      "subjects": {
+        "fields": {
+          "name": "Название",
+          "color": "Цвет",
+          "actions": "Действия"
         },
-        "categories": {
-          "filters": {
-            "subject": "Тема"
-          },
-          "fields": {
-            "name": "Название",
-            "subject": "Тема",
-            "actions": "Действия"
-          },
-          "titles": {
-            "create": "Создание категории",
-            "edit": "Редактирование категории",
-            "delete": "Удалить категорию?"
-          }
-        },
-        "subcategories": {
-          "filters": {
-            "category": "Категория"
-          },
-          "fields": {
-            "name": "Название",
-            "category": "Категория",
-            "subject": "Тема",
-            "actions": "Действия"
-          },
-          "titles": {
-            "create": "Создание подкатегории",
-            "edit": "Редактирование подкатегории",
-            "delete": "Удалить подкатегорию?"
-          }
-        },
-        "examples": {
-          "filters": {
-            "subcategory": "Подкатегория"
-          },
-          "fields": {
-            "name": "Название",
-            "description": "Описание",
-            "subject": "Тема",
-            "category": "Категория",
-            "subcategory": "Подкатегория",
-            "actions": "Действия"
-          },
-          "titles": {
-            "create": "Создание примера",
-            "edit": "Редактирование примера",
-            "delete": "Удалить пример?"
-          }
+        "titles": {
+          "create": "Создание темы",
+          "edit": "Редактирование темы",
+          "delete": "Удалить тему?"
         }
+      },
+      "categories": {
+        "filters": {
+          "subject": "Тема"
+        },
+        "fields": {
+          "name": "Название",
+          "subject": "Тема",
+          "actions": "Действия"
+        },
+        "titles": {
+          "create": "Создание категории",
+          "edit": "Редактирование категории",
+          "delete": "Удалить категорию?"
+        }
+      },
+      "subcategories": {
+        "filters": {
+          "category": "Категория"
+        },
+        "fields": {
+          "name": "Название",
+          "category": "Категория",
+          "subject": "Тема",
+          "actions": "Действия"
+        },
+        "titles": {
+          "create": "Создание подкатегории",
+          "edit": "Редактирование подкатегории",
+          "delete": "Удалить подкатегорию?"
+        }
+      },
+      "examples": {
+        "filters": {
+          "subcategory": "Подкатегория"
+        },
+        "fields": {
+          "name": "Название",
+          "description": "Описание",
+          "subject": "Тема",
+          "category": "Категория",
+          "subcategory": "Подкатегория",
+          "actions": "Действия"
+        },
+        "titles": {
+          "create": "Создание примера",
+          "edit": "Редактирование примера",
+          "delete": "Удалить пример?"
+        }
+      },
+      "dialogs": {
+        "filters": {
+          
+        },
+        "fields": {
+          "message": "Сообщение"
+        }
+      }
     },
 
 
